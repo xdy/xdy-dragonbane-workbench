@@ -9,7 +9,8 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/xdy/xdy-dragonbane-workbench/total) ![the latest version zip](https://img.shields.io/github/downloads/xdy/xdy-dragonbane-workbench/latest/xdy-dragonbane-workbench.zip) ![Forge installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fxdy-dragonbane-workbench)
 
 Translations:
-Make a PR with the translated file until I've set up a gitlocalize.
+<a href="https://gitlocalize.com/repo/10276?utm_source=badge"> <img src="https://gitlocalize.com/repo/10276/whole_project/badge.svg" /> </a>
+
 
 This module is intended to hold a few features for the foundry vtt Drakar & Demoner / dragonbane system that could well
 have been separate modules.
