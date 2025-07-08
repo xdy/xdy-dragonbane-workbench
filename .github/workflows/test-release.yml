@@ -47,6 +47,9 @@ jobs:
       - name: Build
         run: yarn run build
 
+      - name: Make release script executable
+        run: chmod +x ./.release.sh
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
