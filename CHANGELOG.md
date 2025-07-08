@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.0.0...v1.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* Lite språkfix ([50600d3](https://github.com/xdy/xdy-dragonbane-workbench/commit/50600d36be0dec80e1766e882d251cb370fe7aeb))
+
 # 1.0.0 (2025-07-08)
 
 
