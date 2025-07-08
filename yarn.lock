@@ -4968,7 +4968,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"foundry-pf2e@https://github.com/7H3LaughingMan/foundry-pf2e.git#commit=68aca8b6d64707172b920e8d7fb8ae8d41a83240":
+"foundry-pf2e@https://github.com/7H3LaughingMan/foundry-pf2e.git":
   version: 1.0.0
   resolution: "foundry-pf2e@https://github.com/7H3LaughingMan/foundry-pf2e.git#commit=68aca8b6d64707172b920e8d7fb8ae8d41a83240"
   dependencies:
@@ -10389,7 +10389,7 @@ __metadata:
     eslint-import-resolver-typescript: "npm:^4.4.4"
     eslint-plugin-import-x: "npm:^4.16.1"
     eslint-plugin-tsdoc: "npm:^0.4.0"
-    foundry-pf2e: "https://github.com/7H3LaughingMan/foundry-pf2e.git#commit=68aca8b6d64707172b920e8d7fb8ae8d41a83240"
+    foundry-pf2e: "https://github.com/7H3LaughingMan/foundry-pf2e.git"
     pixi: "npm:^0.3.1"
     postcss: "npm:^8.5.6"
     postcss-preset-env: "npm:^10.2.4"
