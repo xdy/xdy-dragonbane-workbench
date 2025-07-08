@@ -10,6 +10,7 @@
 
 Translations:
 <a href="https://gitlocalize.com/repo/10276?utm_source=badge"> <img src="https://gitlocalize.com/repo/10276/whole_project/badge.svg" /> </a>
+<a href="https://gitlocalize.com/repo/10276/sv?utm_source=badge"> <img src="https://gitlocalize.com/repo/10276/sv/badge.svg" /> </a>
 
 Various qol features for the Foundry VTT Drakar & Demoner / Dragonbane system.
 
