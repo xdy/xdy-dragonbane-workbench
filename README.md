@@ -40,6 +40,7 @@ URL: https://github.com/xdy/xdy-dragonbane-workbench/releases/latest/download/mo
 If you want to install this module for older versions, download xdy-dragonbane-workbench.zip from one of the following
 links and unzip it into your modules/xdy-dragonbane-workbench folder. Make sure to lock the module version, and remember
 that these versions are not supported. (They probably work, but if they don't, you're on your own.)
+* No links to older versions yet, as there are no older versions
 
 ### Patch Notes:
 
@@ -69,7 +70,7 @@ It is by caffeine alone I set my mind in motion
 Project Licensing:
 
 * Everything in this project that is not covered by one of the following license exceptions is made available under the
-  Apache License (see [LICENSE.MD](LICENSE.md) It is partly based
+  Apache License (see [LICENSE.MD](LICENSE.md)) This project is partly based
   on https://github.com/typhonjs-fvtt-demo/template-svelte-ts-pf2e and partly on my
   own https://github.com/xdy/xdy-pf2e-workbench
 
