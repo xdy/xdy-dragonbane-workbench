@@ -3,21 +3,21 @@
     "SETTINGS": {
       "reminderTargeting": {
         "hint": "Kryssa i för att visa påminnelse om att välja mål i strid.",
-        "name": "Påminnelse om att välja mål",
+        "name": "Påminn om att välja mål",
         "info": "Välj ett mål före du anfaller.",
         "error": "{title} med {weapon} avbröts eftersom du måste välja mål före du anfaller.",
         "no": "Ingen påminnelse",
         "reminder": "Påminnelse",
-        "mustTarget": "Avbryt attack utan valt mål",
+        "mustTarget": "Avbryt anfall utan valt mål",
         "withTarget": "<b>([^<]+)<\\/b>\\s+med\\s+@UUID\\[[^\\]]+\\]\\s+mot\\s+<b>([^<]+)<\\/b>\\s+<b>([^<.!]+)[.!]?<\\/b>",
         "withoutTarget": "<b>([^<]+)<\\/b>\\s+med\\s+@UUID\\[[^\\]]+\\]\\s+<b>([^<.!]+)[.!]?<\\/b>"
       },
       "reminderCannotAttack": {
         "dead": "är död",
         "defeated": "är besegrad",
-        "hint": "Visa påminnelse om att attack sker med en spelfigur som inte kan attackera på grund av att den är död eller greppad.",
-        "name": "Påminnelse om att attack sker med en spelfigur som inte kan attackera",
-        "info": "Är du säker på detta {titeln}? {actorName} {reason}, och torde inte kunna attackera ...",
+        "hint": "Visa påminnelse om att anfall sker med en spelfigur som inte borde kunna anfalla på grund av att den är död eller greppad.",
+        "name": "Påminnelse om att anfall inte borde vara möjligt",
+        "info": "Är du säker på detta {titeln}? {actorName} {reason}, och torde inte kunna anfalla ...",
         "error": "{title} med {weapon} avbröts eftersom {actorName} {reason}.",
         "no": "Ingen påminnelse",
         "reminder": "Påminnelse",
