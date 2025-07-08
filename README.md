@@ -11,17 +11,12 @@
 Translations:
 <a href="https://gitlocalize.com/repo/10276?utm_source=badge"> <img src="https://gitlocalize.com/repo/10276/whole_project/badge.svg" /> </a>
 
+Various qol features for foundry vtt Drakar & Demoner / dragonbane system.
 
-This module is intended to hold a few features for the foundry vtt Drakar & Demoner / dragonbane system that could well
-have been separate modules.
+## Features
 
-## Features (order by setting section)
-
-If they start with TODO it's a planned feature that does not yet exist.
-
-* Reminder section
-  * Option to remind when attack is made by a token that probably can't attack (due to being unconscious / dead /
-    defeated / has no hp / is restrained / etc), and option to cancel impossible attacks.
+* General
+  * Option to remind when attack is made by a token that probably can't attack (due to being dead or grappled), or just cancel impossible attacks.
   * Option to remind when an attack is made without targeting, or just cancel untargeted attacks.
 
 * Experimental features:
