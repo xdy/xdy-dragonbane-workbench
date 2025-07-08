@@ -11,7 +11,7 @@
 Translations:
 <a href="https://gitlocalize.com/repo/10276?utm_source=badge"> <img src="https://gitlocalize.com/repo/10276/whole_project/badge.svg" /> </a>
 
-Various qol features for foundry vtt Drakar & Demoner / dragonbane system.
+Various qol features for the Foundry VTT Drakar & Demoner / Dragonbane system.
 
 ## Features
 
