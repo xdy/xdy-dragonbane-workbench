@@ -1,0 +1,35 @@
+# OS & IDE
+.DS_Store
+*.iml
+.idea/
+.vscode/
+.vs/
+
+# Environment & config
+*.env
+npm-debug.log
+
+# Node/Yarn
+node_modules/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Build & output
+dist/
+coverage/
+debug/
+.typescript-build
+.vite-cache/
+vite.config.ts.timestamp-*-*.mjs
+/tsconfig.tsbuildinfo
+
+# Project artifacts
+package/
+
+#Local configuration
+foundryconfig.json

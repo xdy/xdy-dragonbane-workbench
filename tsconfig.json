@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "baseUrl": ".",
+    "outDir": ".typescript-build",
+    "noEmit": true,
+
+    "types": [
+      "foundry-pf2e",
+      "@typhonjs-fvtt/runtime/types/fvtt-shim/pf2e"
+    ],
+
+    "isolatedModules": true,
+    "sourceMap": true,
+
+    "strict": true,
+
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": false,
+    "skipLibCheck": true
+  },
+
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/*"]
+}

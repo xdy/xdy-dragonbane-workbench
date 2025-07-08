@@ -1,0 +1,16 @@
+/.yarn/**            linguist-vendored
+/.yarn/releases/*    binary
+/.yarn/plugins/**/*  binary
+/.pnp.*              binary linguist-generated
+
+# Autodetect text files
+* text=auto eol=lf
+
+# Definitively text
+*.db text
+.gitkeep text
+
+# Definitively not text
+*.ogg binary
+*.pdf binary
+*.webp binary

@@ -1,0 +1,103 @@
+name: Test and release
+
+# Run the workflow when a Pull Request is opened or when changes are pushed to main on 'xdy/xdy-dragonbane-workbench' (i.e. don't run on forks)
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+env:
+  package_type: module
+  node_version: 20
+
+jobs:
+  release:
+    # Only release on push to main on xdy/xdy-dragonbane-workbench
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main') && github.repository == 'xdy/xdy-dragonbane-workbench'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+        # Not sure this is the right way to do it, but, eh, it works.
+      - name: Pull & update submodules recursively
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
+
+      - uses: stefanzweifel/git-auto-commit-action@v5.2.0
+        with:
+          commit_message: "chore: Update submodules"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 20.x
+          #cache: 'npm'
+
+      - name: Install
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
+
+      - name: Get Module ID
+        id: moduleID
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: "./dist/${{ env.package_type }}.json"
+          prop_path: "id"
+
+      - name: Get minimum
+        id: minimum
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: "./dist/${{ env.package_type }}.json"
+          prop_path: "compatibility.minimum"
+
+      - name: Get verified
+        id: verified
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: "./dist/${{ env.package_type }}.json"
+          prop_path: "compatibility.verified"
+
+      - name: Get maximum
+        id: maximum
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: "./dist/${{ env.package_type }}.json"
+          prop_path: "compatibility.maximum"
+
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
+      - name: Submit package to FoundryVTT Package Release API
+        run: |
+          curl -X POST "https://api.foundryvtt.com/_api/packages/release_version/" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: ${{ secrets.FOUNDRYVTT_RELEASE_TOKEN }}" \
+            -d '{
+              "id": "${{ steps.moduleID.outputs.prop }}",
+              "dry-run": false,
+              "release": {
+                "version": "${{ steps.package-version.outputs.current-version}}",
+                "manifest": "https://github.com/${{ github.repository }}/releases/latest/download/module.json",
+                "notes": "https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md",
+                "compatibility": {
+                  "minimum": "${{ steps.minimum.outputs.prop }}",
+                  "verified": "${{ steps.verified.outputs.prop }}",
+                  "maximum": "${{ steps.maximum.outputs.prop }}"
+                }
+             }
+           }'

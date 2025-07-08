@@ -1,0 +1,28 @@
+{
+  "xdy-dragonbane-workbench": {
+    "SETTINGS": {
+      "reminderTargeting": {
+        "hint": "Check to show reminder for targeting in combat.",
+        "name": "Targeting reminder",
+        "info": "Please target before you attack.",
+        "error": "{title} with {weapon} canceled as you must target before you attack.",
+        "no": "No reminder",
+        "reminder": "Reminder",
+        "mustTarget": "Cancel untargeted attack",
+        "withTarget": "<b>([^<]+)<\\/b>\\s+with\\s+@UUID\\[[^\\]]+\\]\\s+targeting\\s+<b>([^<]+)<\\/b>\\s+<b>([^<.!]+)[.!]?<\\/b>",
+        "withoutTarget": "<b>([^<]+)<\\/b>\\s+with\\s+@UUID\\[[^\\]]+\\]\\s+<b>([^<.!]+)[.!]?<\\/b>"
+      },
+      "reminderCannotAttack": {
+        "dead": "is dead",
+        "defeated": "is defeated",
+        "hint": "Check to show reminder if attacking with a token that cannot attack due to being dead or grappled.",
+        "name": "Reminder if attacking with token unable to attack",
+        "info": "Are you sure about this {title}? {actorName} {reason}, and thus not likely to be able to attack...",
+        "error": "{title} with {weapon} canceled as {actorName} {reason}.",
+        "no": "No reminder",
+        "reminder": "Reminder",
+        "cancelAttack": "Cancel attack if unable to attack"
+      }
+    }
+  }
+}
