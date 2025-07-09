@@ -90,8 +90,17 @@ Virtual Table Top Platform Licenses:
 * Foundry VTT support is covered by the following
   license: [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 
+Dragonbane / Drakar och Demoner third-party license:
+This module is made available under the Dragonbane third-party license (version 1.0) which can be found in
+English [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Dragonbane-License-Agreement.pdf) and in
+Swedish [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Drakar-och-Demoner-tredjepartslicens.pdf).
+
+![dragonbane-licenslogo-rod.webp](static/assets/media/dragonbane-licenslogo-rod.webp)
+![drakar-och-demoner-licenslogo-rod.webp](static/assets/media/drakar-och-demoner-licenslogo-rod.webp)
+
 Asset licenses:
 
 * The cover image is modified by me
   from [Picture taken at a garage exhibit at LACMA.](https://unsplash.com/photos/1UimDTf69ho)
   by [Elmer Mercanas](https://unsplash.com/@elmercanasjr) under the [Unsplash License](https://unsplash.com/license)
+
