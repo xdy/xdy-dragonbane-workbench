@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.2.1...v1.2.2) (2025-07-09)
+
+
+### Bug Fixes
+
+* Proper text for license compliance. ([ad45cc5](https://github.com/xdy/xdy-dragonbane-workbench/commit/ad45cc55237cf76d6378c6d1cb8bd26ac0a30071))
+
 ## [1.2.1](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.2.0...v1.2.1) (2025-07-09)
 
 
