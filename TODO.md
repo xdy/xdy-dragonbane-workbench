@@ -13,7 +13,6 @@ Features I'm considering porting over from xdy-pf2e-workbench
   * TODO Option to hold CTRL while casting a spell to cast it as a whispered chat message.
     * Option to cast the normal way if a party member knows the spell, and an option to always cast privately for
       non-allies/non-partymembers/NPCs.
-  * TODO Option to alter the token animation speed. (Not compatible with Multi Level Tokens teleport functionality.)
   * TODO Option to switch the default 'hold shift' for attacks/skillrolls
 
 * World Automation section

@@ -1,6 +1,5 @@
-// This file serves as the entry point for the module
-import {createChatMessageHook, preCreateChatMessageHook} from "./module/hook-handlers";
-
+import {createChatMessageHook, preCreateChatMessageHook, preUpdateTokenHook} from "./module/hook-handlers";
+import {registerWorkbenchSettings} from "./module/register-settings";
 
 // Import and re-export all files from the module directory to ensure they're included in the build
 // @ts-ignore
@@ -32,6 +31,8 @@ function handle(hookName: any, shouldBeOn: boolean, hookFunction: {
   }
 }
 
+const DEFAULT_TOKEN_ANIMATION_SPEED = 6; //Från foundrys kod
+
 export function updateHooks(cleanSlate = false) {
   if (phase > Phase.SETUP && game.user && game.user.isGM && game.socket) {
     game.socket.emit("module." + MODULENAME, {operation: "updateHooks"});
@@ -55,38 +56,7 @@ export function updateHooks(cleanSlate = false) {
     createChatMessageHook,
   );
 
-}
-
-function registerWorkbenchSettings() {
-  game.settings.register(MODULENAME, "reminderCannotAttack", {
-    name: `${MODULENAME}.SETTINGS.reminderCannotAttack.name`,
-    hint: `${MODULENAME}.SETTINGS.reminderCannotAttack.hint`,
-    scope: "user",
-    config: true,
-    default: "no",
-    type: String,
-    choices: {
-      no: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderCannotAttack.no`),
-      reminder: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderCannotAttack.reminder`),
-      cancelAttack: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderCannotAttack.cancelAttack`),
-    },
-    onChange: () => { updateHooks(); },
-  });
-
-  game.settings.register(MODULENAME, "reminderTargeting", {
-    name: `${MODULENAME}.SETTINGS.reminderTargeting.name`,
-    hint: `${MODULENAME}.SETTINGS.reminderTargeting.hint`,
-    scope: "user",
-    config: true,
-    default: "no",
-    type: String,
-    choices: {
-      no: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderTargeting.no`),
-      reminder: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderTargeting.reminder`),
-      mustTarget: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderTargeting.mustTarget`),
-    },
-    onChange: () => { updateHooks(); },
-  });
+  handle("preUpdateToken", Boolean(gs.get(MODULENAME, "tokenAnimationSpeed") !== DEFAULT_TOKEN_ANIMATION_SPEED), preUpdateTokenHook);
 }
 
 // Initialize module
@@ -100,8 +70,26 @@ Hooks.once("init", async () => {
   // Hooks that only run if a setting that needs it has been enabled
   updateHooks();
 
-  // Register custom sheets (if any)
+  game.socket.on("module." + MODULENAME, (operation) => {
+    switch (operation?.operation) {
+      case "updateHooks":
+        if (!game.user.isGM) {
+          updateHooks();
+        }
+        break;
+      case "notification":
+        if (!game.user.isGM) {
+          const type = operation.args[0];
+          const message = operation.args[1];
+          ui.notifications.notify(message, type);
+        }
+        break;
+      default:
+        break;
+    }
+  });
 
+  // Register custom sheets (if any)
 });
 
 // Update phase when the game is ready

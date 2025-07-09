@@ -22,6 +22,10 @@
         "no": "Ingen påminnelse",
         "reminder": "Påminnelse",
         "cancelAttack": "Avbryt omöjliga anfall"
+      },
+      "tokenAnimationSpeed": {
+        "hint": "Ändra spelfigurens förflyttningsanimationshastighet (default är 6).",
+        "name": "Ändra spelfigurens förflyttningsanimationshastighet."
       }
     }
   }

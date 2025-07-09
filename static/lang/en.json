@@ -22,6 +22,10 @@
         "no": "No reminder",
         "reminder": "Reminder",
         "cancelAttack": "Cancel attack if unable to attack"
+      },
+      "tokenAnimationSpeed": {
+        "hint": "Alter token movement animation speed (default is 6).",
+        "name": "Alter token movement animation speed."
       }
     }
   }

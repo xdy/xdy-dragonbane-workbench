@@ -33,6 +33,14 @@ export function createChatMessageHook(_message: ChatMessage) {
   }
 }
 
+export function preUpdateTokenHook(_document: any, update: { x: null; y: null; }, options: object, ..._args: any[]) {
+  if (update.x !== null || update.y !== null) {
+    foundry.utils.setProperty(options, "animation", {
+      movementSpeed: game.settings.get(MODULENAME, "tokenAnimationSpeed"),
+    });
+  }
+}
+
 function getAttackReasonCannotHappen(token: any): string {
   if (!token) return "";
   const conditionReasons = {

@@ -94,3 +94,7 @@ export function extractChatMessageInfo(message: string): ExtractedChatInfo | nul
     actionType
   };
 }
+
+export function pushNotification(message: any, type: string = "info") {
+  game.socket.emit("module." + MODULENAME, {operation: "notification", args: [type, message]});
+}
