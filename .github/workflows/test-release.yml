@@ -84,6 +84,13 @@ jobs:
           path: "./dist/${{ env.package_type }}.json"
           prop_path: "compatibility.maximum"
 
+      - name: Get current version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: "./dist/${{ env.package_type }}.json"
+          prop_path: "version"
+
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
@@ -97,7 +104,7 @@ jobs:
               "id": "${{ steps.moduleID.outputs.prop }}",
               "dry-run": false,
               "release": {
-                "version": "${{ steps.package-version.outputs.current-version}}",
+                "version": "${{ steps.version.outputs.prop}}",
                 "manifest": "https://github.com/${{ github.repository }}/releases/latest/download/module.json",
                 "notes": "https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md",
                 "compatibility": {
