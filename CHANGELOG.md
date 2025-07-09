@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.1.0...v1.2.0) (2025-07-09)
+
+
+### Features
+
+* Add optional keybindings for executing a macro in any position on any page of the macro hotbar, whether that page is currently showing or not. ([e2d56d7](https://github.com/xdy/xdy-dragonbane-workbench/commit/e2d56d7d85832b79dd49e82c9a9ab376b6feba5b))
+
 # [1.1.0](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.0.1...v1.1.0) (2025-07-09)
 
 
