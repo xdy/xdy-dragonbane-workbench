@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.2.0...v1.2.1) (2025-07-09)
+
+
+### Bug Fixes
+
+* Add dragonbane/drakar och demoner license compliance text and logos. ([1026461](https://github.com/xdy/xdy-dragonbane-workbench/commit/10264617482db5369ce35facf7afc7a2c7c0884f))
+
 # [1.2.0](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.1.0...v1.2.0) (2025-07-09)
 
 
