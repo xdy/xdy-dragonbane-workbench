@@ -91,6 +91,7 @@ Virtual Table Top Platform Licenses:
   license: [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 
 Dragonbane / Drakar och Demoner third-party license:
+
 Dragonbane Workbench är en oberoende publikation av Jonas Karlsson och har ingen koppling till Fria Ligan AB. Den är
 publicerad under tredjepartslicensen för Drakar och Demoner (version 1.0). Drakar och Demoner och Ereb Altor är
 registrerade varumärken tillhörande Fria Ligan AB.
