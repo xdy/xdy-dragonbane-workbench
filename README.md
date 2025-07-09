@@ -102,8 +102,8 @@ The Dragonbane third-party license (version 1.0) can be found in
 English [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Dragonbane-License-Agreement.pdf) and in
 Swedish [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Drakar-och-Demoner-tredjepartslicens.pdf).
 
-![dragonbane-licenslogo-rod.webp](static/assets/media/dragonbane-licenslogo-rod.webp)
-![drakar-och-demoner-licenslogo-rod.webp](static/assets/media/drakar-och-demoner-licenslogo-rod.webp)
+<img src="static/assets/media/dragonbane-licenslogo-rod.webp" width="45%">
+<img src="static/assets/media/drakar-och-demoner-licenslogo-rod.webp" width="45%">
 
 Asset licenses:
 
