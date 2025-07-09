@@ -90,25 +90,26 @@ Virtual Table Top Platform Licenses:
 * Foundry VTT support is covered by the following
   license: [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 
-Dragonbane / Drakar och Demoner third-party license:
-
-Dragonbane Workbench är en oberoende publikation av Jonas Karlsson och har ingen koppling till Fria Ligan AB. Den är
-publicerad under tredjepartslicensen för Drakar och Demoner (version 1.0). Drakar och Demoner och Ereb Altor är
-registrerade varumärken tillhörande Fria Ligan AB.
-
-This game is not affiliated with, sponsored, or endorsed by Fria Ligan AB. This Supplement was created under Fria Ligan
-AB’s Dragonbane Third Party Supplement License.
-
-The Dragonbane third-party license (version 1.0) can be found in
-English [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Dragonbane-License-Agreement.pdf) and in
-Swedish [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Drakar-och-Demoner-tredjepartslicens.pdf).
-
-<img src="static/assets/media/dragonbane-licenslogo-rod.webp" width="45%">
-<img src="static/assets/media/drakar-och-demoner-licenslogo-rod.webp" width="45%">
 
 Asset licenses:
 
 * The cover image is modified by me
   from [Picture taken at a garage exhibit at LACMA.](https://unsplash.com/photos/1UimDTf69ho)
   by [Elmer Mercanas](https://unsplash.com/@elmercanasjr) under the [Unsplash License](https://unsplash.com/license)
+
+Dragonbane / Drakar och Demoner third-party license:
+
+* Dragonbane Workbench är en oberoende publikation av Jonas Karlsson och har ingen koppling till Fria Ligan AB. Den är
+publicerad under tredjepartslicensen för Drakar och Demoner (version 1.0). Drakar och Demoner och Ereb Altor är
+registrerade varumärken tillhörande Fria Ligan AB.
+
+* This game is not affiliated with, sponsored, or endorsed by Fria Ligan AB. This Supplement was created under Fria Ligan
+AB’s Dragonbane Third Party Supplement License.
+
+* The Dragonbane third-party license (version 1.0) can be found in
+English [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Dragonbane-License-Agreement.pdf) and in
+Swedish [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Drakar-och-Demoner-tredjepartslicens.pdf).
+
+<img src="static/assets/media/dragonbane-licenslogo-rod.webp" width="45%">
+<img src="static/assets/media/drakar-och-demoner-licenslogo-rod.webp" width="45%">
 
