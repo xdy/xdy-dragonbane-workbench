@@ -33,8 +33,8 @@ Various qol features for the Foundry VTT Drakar & Demoner / Dragonbane system.
   * None currently
 
 * New Keybinds in Configure Controls
-  * Optional keybinds for _executing a macro in any position on any page of the macro hotbar, whether that page is
-    currently showing or not_.
+  * Optional keybinds for executing a macro in any position on any page of the macro hotbar, whether that page is
+    currently showing or not.
 
 Hooks (for other modules to use):
 
