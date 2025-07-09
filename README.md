@@ -17,7 +17,8 @@ Various qol features for the Foundry VTT Drakar & Demoner / Dragonbane system.
 ## Features
 
 * General
-  * Option to remind when attack is made by a token that probably can't attack (due to being dead or grappled), or just cancel impossible attacks.
+  * Option to remind when attack is made by a token that probably can't attack (due to being dead or grappled), or just
+    cancel impossible attacks.
   * Option to remind when an attack is made without targeting, or just cancel untargeted attacks.
 
 * Experimental features:
@@ -31,6 +32,15 @@ Various qol features for the Foundry VTT Drakar & Demoner / Dragonbane system.
 * Recently removed features:
   * None currently
 
+* New Keybinds in Configure Controls
+  * Optional keybinds for _executing a macro in any position on any page of the macro hotbar, whether that page is
+    currently showing or not_.
+
+Hooks (for other modules to use):
+
+* `xdy-dragonbane-workbench.moduleReady`: Triggered when the Workbench is Ready (i.e. has processed the 'ready'
+  hook.)
+
 ## Installation
 
 Install by either searching for xdy-dragonbane-workbench in [FoundryVTT's](https://foundryvtt.com/) Module tab and
@@ -40,6 +50,7 @@ URL: https://github.com/xdy/xdy-dragonbane-workbench/releases/latest/download/mo
 If you want to install this module for older versions, download xdy-dragonbane-workbench.zip from one of the following
 links and unzip it into your modules/xdy-dragonbane-workbench folder. Make sure to lock the module version, and remember
 that these versions are not supported. (They probably work, but if they don't, you're on your own.)
+
 * No links to older versions yet, as there are no older versions
 
 ### Patch Notes:

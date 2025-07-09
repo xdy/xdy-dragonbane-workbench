@@ -27,6 +27,11 @@
         "hint": "Alter token movement animation speed (default is 6).",
         "name": "Alter token movement animation speed."
       }
+    },
+    "KEYBINDINGS": {
+      "macroHotbar": {
+        "hint": "Call hotbar macro on page {page} position {position}"
+      }
     }
   }
 }

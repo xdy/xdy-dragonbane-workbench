@@ -1,5 +1,6 @@
 import {createChatMessageHook, preCreateChatMessageHook, preUpdateTokenHook} from "./module/hook-handlers";
 import {registerWorkbenchSettings} from "./module/register-settings";
+import {registerWorkbenchKeybindings} from "./module/keybinds";
 
 // Import and re-export all files from the module directory to ensure they're included in the build
 // @ts-ignore
@@ -63,7 +64,7 @@ export function updateHooks(cleanSlate = false) {
 Hooks.once("init", async () => {
   console.log(`${MODULENAME} | Initializing xdy-dragonbane-workbench`);
   registerWorkbenchSettings();
-
+  registerWorkbenchKeybindings();
   // Hooks that always run
   // Hooks that run once, if a setting is enabled. Manual refresh will still be needed for these.
 
@@ -109,5 +110,3 @@ export const Phase = {
 };
 
 export let phase = Phase.SETUP;
-
-

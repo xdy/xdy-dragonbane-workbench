@@ -48,18 +48,12 @@ TODO
 ```
 
 HOOKS (for other modules to use):
-
-* TODO `xdy-dragonbane-workbench.moduleReady`: Triggered when the Workbench is Ready (i.e. has processed the 'ready'
-  hook
-  once.)
-* TODO `xdy-dragonbane-workbench.tokenCreateMystification`: Triggered when a token is being created and is going to be
+TODO `xdy-dragonbane-workbench.tokenCreateMystification`: Triggered when a token is being created and is going to be
   mystified. If a module returns `false` the token's name will not by mystified.
 
 
 * New Keybinds in Configure Controls
   * TODO Optional keybind to mystify a creature.
-  * TODO Optional keybinds for executing a macro in any position on any page of the macro hotbar, whether that page is
-    currently showing or not.
   * TODO ??? Optional keybind called "Add user targets" that lets the GM add token targets to other users by selecting
     or
     hovering over those tokens, pressing the keybind and choosing which user should target those tokens. Enables GMs

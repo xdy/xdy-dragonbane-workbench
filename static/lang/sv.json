@@ -27,6 +27,11 @@
         "hint": "Ändra spelfigurens förflyttningsanimationshastighet (default är 6).",
         "name": "Ändra spelfigurens förflyttningsanimationshastighet."
       }
+    },
+    "KEYBINDINGS": {
+      "macroHotbar": {
+        "hint": "Anropa makro på angiven hotbar-sida och position"
+      }
     }
   }
 }
