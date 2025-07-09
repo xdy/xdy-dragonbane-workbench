@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.0.1...v1.1.0) (2025-07-09)
+
+
+### Features
+
+* Add option to change token animation speed. (I.e. how fast it moves across the canvas when dragged.) ([5b5b5dd](https://github.com/xdy/xdy-dragonbane-workbench/commit/5b5b5ddaa9e6d225f0dea519d49297c6cd8cffd9))
+
 ## [1.0.1](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.0.0...v1.0.1) (2025-07-08)
 
 
