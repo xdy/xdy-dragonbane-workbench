@@ -26,6 +26,78 @@
       "tokenAnimationSpeed": {
         "hint": "Ändra spelfigurens förflyttningsanimationshastighet (default är 6).",
         "name": "Ändra spelfigurens förflyttningsanimationshastighet."
+      },
+      "renamingSettings": {
+        "hint": "Aktivera och konfigurera omdöpning av SLP",
+        "label": "Hantera inställningar för SLP-omdöpning",
+        "name": "Inställningar för SLP-omdöpning"
+      },
+      "notifications": {
+        "cantRename": "Du kan inte döpa om denna token. Finns den i den aktiva scenen, och är du spelledare?"
+      },
+      "npcRenamer": {
+        "hint": "Markera för att aktivera token-omdöpning, vilket döper om tokens i den aktiva scenen baserat på deras egenskaper om Ctrl (konfigurerbart) hålls in vid tillägg till scenen. Spara inställningar för att visa/dölja ytterligare alternativ. Medlemmar i gruppen exkluderas alltid.",
+        "name": "Aktivera SLP-omdöpare."
+      },
+      "npcRenamerAddRandomProperty": {
+        "hint": "Välj en typ av slumpmässig egenskap att lägga till vid omdöpning av tokens, som eventuellt kan behållas.",
+        "name": "Lägg till slumpmässig egenskap av vald typ i namnet",
+        "none": "Ingen",
+        "numberPostfix": "Siffra som efterled",
+        "wordPrefix": "Ord som förled"
+      },
+      "npcRenamerBlacklist": {
+        "hint": "Lägg till ord för att filtrera bort innehåll från denna kommaseparerade blocklista från det omdöpta namnet.",
+        "name": "Blocklista för egenskaper som aldrig ska läggas till"
+      },
+      "npcRenamerDerenameAllTokensBasedOnTheSameActor": {
+        "hint": "Markera för att låta alla tokens baserade på samma aktör av-omdöpas samtidigt.",
+        "name": "Av-omdöp alla tokens för aktör"
+      },
+      "npcRenamerDerenameToOriginalTokenName": {
+        "hint": "Vid av-omdöpning av en token, återställ dess ursprungliga namn istället för att använda aktörens prototyptoken-namn.",
+        "name": "Återställ ursprungligt token-namn vid av-omdöpning"
+      },
+      "npcRenamerExcludeActorTypes": {
+        "hint": "Kommaseparerad lista över aktörstyper att exkludera från omdöpning",
+        "name": "Aktörstyper att exkludera från omdöpning"
+      },
+      "npcRenamerIcon": {
+        "hint": "Font Awesome-ikonen som ska användas för omdöpningsreglaget. Måste vara en giltig Font Awesome-klass (t.ex. `fa-solid fa-eye-slash` eller `fa-solid fa-user-secret`).",
+        "name": "Omdöpningsikon"
+      },
+      "npcRenamerModifierKey": {
+        "alt": "Alt",
+        "always": "Alltid",
+        "control": "Control",
+        "meta": "Meta/⌘ (kommando)/⊞ (windows)",
+        "disabled": "Inaktiverad",
+        "hint": "Välj för att aktivera inställning för vilken tangent som ska hållas in för att döpa om token vid dragning till aktiv scen. Observera att om du väljer Alt (ej standard) så döljs även tokenen.",
+        "name": "Tangent för omdöpning vid drag till scen"
+      },
+      "npcRenamerRenameKey": {
+        "hint": "Ange tangentbindning för att döpa om valda tokens.",
+        "name": "Tangentbindning för att döpa om valda tokens"
+      },
+      "npcRenamerNoMatch": {
+        "hint": "Text som ska användas när ingen matchande egenskap hittas, så att namnet annars skulle vara tomt. (Tom sträng här kommer att bli '...')",
+        "name": "Text vid ingen träff"
+      },
+      "npcRenamerPostfix": {
+        "hint": "Lägg till text som efterled till det nya namnet, standard är '' (exempel: 'Varelse')",
+        "name": "Efterledsord"
+      },
+      "npcRenamerPrefix": {
+        "hint": "Lägg till text som förled till det nya namnet (infogad om slumpmässigt ord är valt ovan), standard är '' (exempel: 'Okänd')",
+        "name": "Förledsord"
+      },
+      "npcRenamerRandomPropertySkipForUnique": {
+        "hint": "Markera för att hoppa över tillägg av slumpmässig egenskap vid omdöpning av unika tokens. (Dvs. den bevaras när du av-omdöper tokenen.)",
+        "name": "Hoppa över slumpmässig egenskap för unika tokens."
+      },
+      "npcRenamerWordPrefix": {
+        "hint": "Lägger till ett slumpmässigt ord från vald tärningstabell som förled om 'Ord som förled' är valt.",
+        "name": "Lägg till slumpmässigt ord från vald tärningstabell"
       }
     },
     "KEYBINDINGS": {

@@ -1,13 +1,10 @@
-Features I'm considering porting over from xdy-pf2e-workbench
+Features I'm considering adding:
+ÖVERBELASTAD, gives a condition if one is encumbered
 
-* TDDO Mystification section
-  * TODO Might not be needed, test the built in one. Needs internationalization support.
-    * Basically I want:
-      * 'Anka' -> 'Trevlig Anka' (random adjective first)
-      * 'Anka' -> 'Anka 42' (number last)
-      * 'Anka' -> 'Pelle Anka' (give it a first name and/or nickname from a random list)
-      * 'Anka' -> 'Varelse' (if the players have never met one)
-      * Keep the pf2e workbench feature to mystify/demystify all creatures with the same actor name.
+Houserules I'm considering adding support for:
+My brave/cautious houserule (add conditions), or, maybe through condition lab?
+
+Features I'm considering porting over from xdy-pf2e-workbench
 
 * Quality of Life section
   * TODO Option to hold CTRL while casting a spell to cast it as a whispered chat message.
@@ -48,12 +45,11 @@ TODO
 ```
 
 HOOKS (for other modules to use):
-TODO `xdy-dragonbane-workbench.tokenCreateMystification`: Triggered when a token is being created and is going to be
-  mystified. If a module returns `false` the token's name will not by mystified.
+TODO `xdy-dragonbane-workbench.tokenCreateRenaming`: Triggered when a token is being created and is going to be
+  renamed. If a module returns `false` the token's name will not by renamed.
 
 
 * New Keybinds in Configure Controls
-  * TODO Optional keybind to mystify a creature.
   * TODO ??? Optional keybind called "Add user targets" that lets the GM add token targets to other users by selecting
     or
     hovering over those tokens, pressing the keybind and choosing which user should target those tokens. Enables GMs
@@ -70,4 +66,5 @@ TODO `xdy-dragonbane-workbench.tokenCreateMystification`: Triggered when a token
 * TODO There are a few more compendiums included with this module with assorted internal utility macros and items that
   do not
   need to be imported, as indicated by their labels all ending with 'do not import'
+
 

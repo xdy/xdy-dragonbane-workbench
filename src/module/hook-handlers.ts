@@ -1,6 +1,7 @@
 import {reminderTargeting} from "./targeting";
 import {MODULENAME} from "../xdy-dragonbane-workbench";
 import {extractChatMessageInfo, ExtractedChatInfo, shouldIHandleThisMessage} from "./utils";
+import {renderNameHud, tokenCreateRenaming} from "./tokenNames";
 
 export const preCreateChatMessageHook = (message: ChatMessage, data: any, _options: any, _user: any) => {
   let proceed = true;
@@ -33,6 +34,12 @@ export function createChatMessageHook(_message: ChatMessage) {
   }
 }
 
+export async function createTokenHook(token: TokenDocument, ..._args: any[]) {
+  if (game.user?.isGM && game.settings.get(MODULENAME, "npcRenamer")) {
+    tokenCreateRenaming(token).then();
+  }
+}
+
 export function preUpdateTokenHook(_document: any, update: { x: null; y: null; }, options: object, ..._args: any[]) {
   if (update.x !== null || update.y !== null) {
     foundry.utils.setProperty(options, "animation", {
@@ -40,6 +47,13 @@ export function preUpdateTokenHook(_document: any, update: { x: null; y: null; }
     });
   }
 }
+
+export function renderTokenHUDHook(_app: TokenDocument, html: HTMLElement, data: any) {
+  if (html && game.user?.isGM && game.settings.get(MODULENAME, "npcRenamer")) {
+    renderNameHud(data, html);
+  }
+}
+
 
 function getAttackReasonCannotHappen(token: any): string {
   if (!token) return "";

@@ -1,6 +1,13 @@
-import {createChatMessageHook, preCreateChatMessageHook, preUpdateTokenHook} from "./module/hook-handlers";
+import {
+  createChatMessageHook,
+  createTokenHook,
+  preCreateChatMessageHook,
+  preUpdateTokenHook,
+  renderTokenHUDHook
+} from "./module/hook-handlers";
 import {registerWorkbenchSettings} from "./module/register-settings";
 import {registerWorkbenchKeybindings} from "./module/keybinds";
+import {doRenamingFromToken} from "./module/tokenNames";
 
 // Import and re-export all files from the module directory to ensure they're included in the build
 // @ts-ignore
@@ -58,6 +65,15 @@ export function updateHooks(cleanSlate = false) {
   );
 
   handle("preUpdateToken", Boolean(gs.get(MODULENAME, "tokenAnimationSpeed") !== DEFAULT_TOKEN_ANIMATION_SPEED), preUpdateTokenHook);
+
+  handle("renderTokenHUD", Boolean(gs.get(MODULENAME, "npcRenamer")), renderTokenHUDHook);
+
+  handle(
+    "createToken",
+    Boolean(gs.get(MODULENAME, "npcRenamer")),
+    createTokenHook,
+  );
+
 }
 
 // Initialize module
@@ -96,6 +112,13 @@ Hooks.once("init", async () => {
 // Update phase when the game is ready
 Hooks.once('ready', () => {
   phase = Phase.READY;
+
+  // Make some functions available for macros
+  // noinspection JSUnusedGlobalSymbols
+  // @ts-ignore
+  game.DragonbaneWorkbench = {
+    doRenamingFromToken: doRenamingFromToken, // await game.DragonbaneWorkbench.doRenamingFromToken(_token.id, true) OR await game.DragonbaneWorkbench.doRenamingFromToken(_token.id, false)
+  };
 });
 
 // Update phase when the game is active

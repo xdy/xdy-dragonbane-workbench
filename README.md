@@ -20,6 +20,8 @@ Various qol features for the Foundry VTT Drakar & Demoner / Dragonbane system.
   * Option to remind when attack is made by a token that probably can't attack (due to being dead or grappled), or just
     cancel impossible attacks.
   * Option to remind when an attack is made without targeting, or just cancel untargeted attacks.
+  * Option to toggle temporary rename of tokens (by adding an adjective first or number last) from hud, when dragging to
+    scene while holding control or by using keybind when one or more tokens are selected.
 
 * Experimental features:
   * If a feature name starts with mentioning that it's experimental, use with caution. It's probably barely tested and
@@ -90,7 +92,6 @@ Virtual Table Top Platform Licenses:
 * Foundry VTT support is covered by the following
   license: [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 
-
 Asset licenses:
 
 * The cover image is modified by me
@@ -100,16 +101,19 @@ Asset licenses:
 Dragonbane / Drakar och Demoner third-party license:
 
 * Dragonbane Workbench är en oberoende publikation av Jonas Karlsson och har ingen koppling till Fria Ligan AB. Den är
-publicerad under tredjepartslicensen för Drakar och Demoner (version 1.0). Drakar och Demoner och Ereb Altor är
-registrerade varumärken tillhörande Fria Ligan AB.
+  publicerad under tredjepartslicensen för Drakar och Demoner (version 1.0). Drakar och Demoner och Ereb Altor är
+  registrerade varumärken tillhörande Fria Ligan AB.
 
-* This game is not affiliated with, sponsored, or endorsed by Fria Ligan AB. This Supplement was created under Fria Ligan
-AB’s Dragonbane Third Party Supplement License.
+* This game is not affiliated with, sponsored, or endorsed by Fria Ligan AB. This Supplement was created under Fria
+  Ligan
+  AB’s Dragonbane Third Party Supplement License.
 
 * The Dragonbane third-party license (version 1.0) can be found in
-English [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Dragonbane-License-Agreement.pdf) and in
-Swedish [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Drakar-och-Demoner-tredjepartslicens.pdf).
+  English [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Dragonbane-License-Agreement.pdf) and in
+  Swedish [here](https://freeleaguepublishing.com/wp-content/uploads/2023/11/Drakar-och-Demoner-tredjepartslicens.pdf).
 
-<img src="static/assets/media/dragonbane-licenslogo-rod.webp" width="45%">
-<img src="static/assets/media/drakar-och-demoner-licenslogo-rod.webp" width="45%">
+<!--suppress CheckImageSize -->
+<img src="static/assets/media/dragonbane-licenslogo-rod.webp" width="45%" alt="Dragonbane compatibility logo">
+<!--suppress CheckImageSize -->
+<img src="static/assets/media/drakar-och-demoner-licenslogo-rod.webp" width="45%" alt="Drakar och Demoner kompatibilitetslogga">
 

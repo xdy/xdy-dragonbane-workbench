@@ -26,6 +26,70 @@
       "tokenAnimationSpeed": {
         "hint": "Alter token movement animation speed (default is 6).",
         "name": "Alter token movement animation speed."
+      },
+      "renamingSettings": {
+        "hint": "Enable and configure NPC renaming",
+        "label": "Manage NPC Renaming Settings",
+        "name": "NPC Renaming Settings"
+      },
+      "notifications": {
+        "cantRename": "You cannot rename this token. Is it on the active scene, and, are you a GM?"
+      },
+      "npcRenamer": {
+        "hint": "Check to enable token renamer, renaming tokens on the active scene based on their traits if Ctrl (configurable) is clicked when adding to scene. Save settings to show/hide additional options. Will always exclude party members.",
+        "name": "Enable npc renamer."
+      },
+      "npcRenamerAddRandomProperty": {
+        "hint": "Select a type of random property to add when renaming tokens that can optionally be kept.",
+        "name": "Add random property of chosen type to name",
+        "none": "None",
+        "numberPostfix": "Number as postfix",
+        "wordPrefix": "Word as prefix"
+      },
+      "npcRenamerUnrenameToOriginalTokenName": {
+        "hint": "When un-renaming a token, restore its original name rather than using the actor's prototype token name.",
+        "name": "Restore original token name when un-renaming"
+      },
+      "npcRenamerExcludeActorTypes": {
+        "hint": "Comma-separated list of actor types to exclude from renaming",
+        "name": "Actor types to exclude from renaming"
+      },
+      "npcRenamerIcon": {
+        "hint": "The Font Awesome icon to use for the renaming toggle. Must be a valid Font Awesome icon class (e.g. `fa-solid fa-eye-slash` or `fa-solid fa-user-secret`).",
+        "name": "Renaming Icon"
+      },
+      "npcRenamerModifierKey": {
+        "alt": "Alt",
+        "always": "Always",
+        "control": "Control",
+        "meta": "Meta/⌘ (command)/⊞ (windows)",
+        "disabled": "Disabled",
+        "hint": "Select to enable setting which key to hold to rename token as it's dragged out to the active scene. Note that if you choose Alt (not the default) it also hides the token.",
+        "name": "Key to rename on drag to scene"
+      },
+      "npcRenamerRenameKey": {
+        "hint": "Set keybind to rename selected tokens.",
+        "name": "Keybind for renaming selected tokens"
+      },
+      "npcRenamerNoMatch": {
+        "hint": "Text to use when no matching trait is found, so name would be empty. (Empty string here will be set to '...')",
+        "name": "No match text"
+      },
+      "npcRenamerPostfix": {
+        "hint": "Add text to postfix new name with, defaults to '' (example: 'Creature')",
+        "name": "Postfix word"
+      },
+      "npcRenamerPrefix": {
+        "hint": "Add text to prefix new name with (infix if a random word property is chosen above), defaults to '' (example: 'Unknown'),",
+        "name": "Prefix word"
+      },
+      "npcRenamerRandomPropertySkipForUnique": {
+        "hint": "Check to skip adding a random property when renaming unique tokens. (I.e. it's kept when you un-rename the token.)",
+        "name": "Skip random persistent property for unique tokens."
+      },
+      "npcRenamerWordPrefix": {
+        "hint": "Adds a random word from the given roll table as a prefix if 'Word prefix' is chosen).",
+        "name": "Add random word from the given roll table"
       }
     },
     "KEYBINDINGS": {
