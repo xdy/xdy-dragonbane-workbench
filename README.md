@@ -8,10 +8,6 @@
 
 ![GitHub all releases](https://img.shields.io/github/downloads/xdy/xdy-dragonbane-workbench/total) ![the latest version zip](https://img.shields.io/github/downloads/xdy/xdy-dragonbane-workbench/latest/xdy-dragonbane-workbench.zip) ![Forge installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fxdy-dragonbane-workbench)
 
-Translations:
-<a href="https://gitlocalize.com/repo/10276?utm_source=badge"> <img src="https://gitlocalize.com/repo/10276/whole_project/badge.svg" /> </a>
-<a href="https://gitlocalize.com/repo/10276/sv?utm_source=badge"> <img src="https://gitlocalize.com/repo/10276/sv/badge.svg" /> </a>
-
 Various qol features for the Foundry VTT Drakar & Demoner / Dragonbane system.
 
 ## Features
