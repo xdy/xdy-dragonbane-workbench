@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.2.2...v1.3.0) (2025-07-14)
+
+
+### Features
+
+* Lagt till option att slå på stöd för omdöpning (dvs lägg till adjektiv först eller siffra sist) på valda spelfigurer. Kan göras från hud på token eller via konfigurerbar snabbtangent. Om man gör det igen återfår den originalnamnet. ([91fdddb](https://github.com/xdy/xdy-dragonbane-workbench/commit/91fdddb192aa6ed401946b779a6a6927d4ce88e1))
+
 ## [1.2.2](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.2.1...v1.2.2) (2025-07-09)
 
 
