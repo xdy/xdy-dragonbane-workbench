@@ -1,6 +1,6 @@
 # xdy-dragonbane-workbench
 
-![](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fxdy%2Fxdy-dragonbane-workbench%2Fmain%2Fpackage.json&label=version&query=$.version&colorB=blue)
+![](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fxdy%2Fxdy-dragonbane-workbench%2Fmain%2Fstatic/%2Fmodule.json&label=version&query=$.version&colorB=blue)
 ![GitHub release](https://img.shields.io/github/release-date/xdy/xdy-dragonbane-workbench) [![GitHub commits](https://img.shields.io/github/commits-since/xdy/xdy-dragonbane-workbench/latest)](https://github.com/xdy/xdy-dragonbane-workbench/commits/)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) ![GitHub contributors](https://img.shields.io/github/contributors/xdy/xdy-dragonbane-workbench)
 
 ![](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dflat%26url%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fxdy%2Fxdy-dragonbane-workbench%2Fmain%2Fstatic%2Fmodule.json)
