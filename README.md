@@ -31,6 +31,7 @@ Various qol features for the Foundry VTT Drakar & Demoner / Dragonbane system.
   * None currently
 
 * New Keybinds in Configure Controls
+  * Optional keybind for renaming selected tokens according to configured rules (see above)
   * Optional keybinds for executing a macro in any position on any page of the macro hotbar, whether that page is
     currently showing or not.
 
