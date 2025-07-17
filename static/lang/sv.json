@@ -46,17 +46,9 @@
         "numberPostfix": "Siffra som efterled",
         "wordPrefix": "Ord som förled"
       },
-      "npcRenamerBlacklist": {
-        "hint": "Lägg till ord för att filtrera bort innehåll från denna kommaseparerade blocklista från det omdöpta namnet.",
-        "name": "Blocklista för egenskaper som aldrig ska läggas till"
-      },
-      "npcRenamerDerenameAllTokensBasedOnTheSameActor": {
-        "hint": "Markera för att låta alla tokens baserade på samma aktör av-omdöpas samtidigt.",
-        "name": "Av-omdöp alla tokens för aktör"
-      },
-      "npcRenamerDerenameToOriginalTokenName": {
-        "hint": "Vid av-omdöpning av en token, återställ dess ursprungliga namn istället för att använda aktörens prototyptoken-namn.",
-        "name": "Återställ ursprungligt token-namn vid av-omdöpning"
+      "npcRenamerUnrenameToOriginalTokenName": {
+        "hint": "När du döper tillbaks en spelfigur till dess originalnamn istället för namnet i dess prototyp-token.",
+        "name": "Återställ det ursprungliga tokennamnet vid namnbyte"
       },
       "npcRenamerExcludeActorTypes": {
         "hint": "Kommaseparerad lista över aktörstyper att exkludera från omdöpning",
