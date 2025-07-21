@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.4.0...v1.4.1) (2025-07-21)
+
+
+### Bug Fixes
+
+* Needs refresh after enabling setting for over-encumbrance automation. ([7903438](https://github.com/xdy/xdy-dragonbane-workbench/commit/79034381b6a2fe223cf3e5b33555387f74e122cb))
+
 # [1.4.0](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.3.0...v1.4.0) (2025-07-21)
 
 
