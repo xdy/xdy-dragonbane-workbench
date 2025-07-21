@@ -2,7 +2,7 @@
   "id": "xdy-dragonbane-workbench",
   "title": "Dragonbane Workbench",
   "description": "Random and assorted collection of possibly useful doodads, thingumabobs and whatchamacallits for the foundry vtt dod / Drakar och Demoner system.",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "compatibility": {
     "minimum": "13.346",
     "verified": "13.346",
@@ -82,7 +82,7 @@
   ],
   "url": "https://github.com/xdy/xdy-dragonbane-workbench/",
   "manifest": "https://github.com/xdy/xdy-dragonbane-workbench/releases/latest/download/module.json",
-  "download": "https://github.com/xdy/xdy-dragonbane-workbench/releases/download/v1.3.0/xdy-dragonbane-workbench.zip",
+  "download": "https://github.com/xdy/xdy-dragonbane-workbench/releases/download/v1.4.0/xdy-dragonbane-workbench.zip",
   "license": "https://github.com/xdy/xdy-dragonbane-workbench/blob/main/LICENSE.md",
   "readme": "https://github.com/xdy/xdy-dragonbane-workbench/blob/main/README.md",
   "bugs": "https://github.com/xdy/xdy-dragonbane-workbench/issues",

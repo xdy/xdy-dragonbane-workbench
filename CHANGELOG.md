@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.3.0...v1.4.0) (2025-07-21)
+
+
+### Features
+
+* Added basic support for Encumbrance automation (only a reminder notification and effect on the token, no handling of actually the effects of being encumbered). ([662727a](https://github.com/xdy/xdy-dragonbane-workbench/commit/662727a73538f1ee677aaf97adccfc06dd3b7338))
+
 # [1.3.0](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.2.2...v1.3.0) (2025-07-14)
 
 
