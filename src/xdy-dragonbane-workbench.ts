@@ -1,6 +1,7 @@
 import {
   createChatMessageHook,
   createTokenHook,
+  encumbranceAutomationHook,
   preCreateChatMessageHook,
   preUpdateTokenHook,
   renderTokenHUDHook
@@ -8,6 +9,7 @@ import {
 import {registerWorkbenchSettings} from "./module/register-settings";
 import {registerWorkbenchKeybindings} from "./module/keybinds";
 import {doRenamingFromToken} from "./module/tokenNames";
+import {addOverEncumberedStatus} from "./module/handle-encumbrance-automation";
 
 // Import and re-export all files from the module directory to ensure they're included in the build
 // @ts-ignore
@@ -64,6 +66,24 @@ export function updateHooks(cleanSlate = false) {
     createChatMessageHook,
   );
 
+  handle(
+    "createItem",
+    Boolean(game.settings.get(MODULENAME, "encumbranceAutomation")),
+    foundry.utils.debounce(encumbranceAutomationHook, 10),
+  );
+
+  handle(
+    "updateItem",
+    Boolean(game.settings.get(MODULENAME, "encumbranceAutomation")),
+    foundry.utils.debounce(encumbranceAutomationHook, 10),
+  );
+
+  handle(
+    "deleteItem",
+    Boolean(gs.get(MODULENAME, "encumbranceAutomation")),
+    foundry.utils.debounce(encumbranceAutomationHook, 10)
+  );
+
   handle("preUpdateToken", Boolean(gs.get(MODULENAME, "tokenAnimationSpeed") !== DEFAULT_TOKEN_ANIMATION_SPEED), preUpdateTokenHook);
 
   handle("renderTokenHUD", Boolean(gs.get(MODULENAME, "npcRenamer")), renderTokenHUDHook);
@@ -81,6 +101,8 @@ Hooks.once("init", async () => {
   console.log(`${MODULENAME} | Initializing xdy-dragonbane-workbench`);
   registerWorkbenchSettings();
   registerWorkbenchKeybindings();
+  addOverEncumberedStatus();
+
   // Hooks that always run
   // Hooks that run once, if a setting is enabled. Manual refresh will still be needed for these.
 
@@ -133,3 +155,4 @@ export const Phase = {
 };
 
 export let phase = Phase.SETUP;
+

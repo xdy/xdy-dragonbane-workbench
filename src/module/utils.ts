@@ -47,7 +47,7 @@ export function extractChatMessageInfo(message: string): ExtractedChatInfo | nul
   let withoutTargetPattern = moduleTranslations["SETTINGS"]["reminderTargeting"]["withoutTarget"];
   let text = '';
   let actionType = '';
-  let target = undefined;
+  let target: string | undefined = undefined;
   let resultText = '';
 
   let match = message.match(withTargetPattern);

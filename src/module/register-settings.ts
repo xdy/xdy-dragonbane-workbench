@@ -50,6 +50,16 @@ export function registerWorkbenchSettings() {
     },
   });
 
+  game.settings.register(MODULENAME, "encumbranceAutomation", {
+    name: `${MODULENAME}.SETTINGS.encumbranceAutomation.name`,
+    hint: `${MODULENAME}.SETTINGS.encumbranceAutomation.hint`,
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: () => updateHooks(),
+  });
+
   game.settings.register(MODULENAME, "npcRenamer", {
     name: `${MODULENAME}.SETTINGS.npcRenamer.name`,
     hint: `${MODULENAME}.SETTINGS.npcRenamer.hint`,
@@ -58,7 +68,6 @@ export function registerWorkbenchSettings() {
     default: false,
     type: Boolean,
     onChange: () => updateHooks(),
-    requiresReload: true,
   });
 
   game.settings.register(MODULENAME, "npcRenamerAddRandomProperty", {

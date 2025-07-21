@@ -1,6 +1,15 @@
 {
   "xdy-dragonbane-workbench": {
+    "EFFECTS": {
+      "StatusOverEncumbered": "Överbelastad"
+    },
     "SETTINGS": {
+      "encumbranceAutomation": {
+        "name": "Aktivera automation av överbelastad.",
+        "hint": "Aktivera automation av att lägga till den nya statusen Överbelastad. (Ingen speleffekt, bara en påminnelsestatus.)",
+        "isEncumbered": "{name} är överbelastad!",
+        "isNotEncumbered": "{name} är inte längre överbelastad!"
+      },
       "reminderTargeting": {
         "hint": "Kryssa i för att visa påminnelse om att välja mål i strid.",
         "name": "Påminn om att välja mål",

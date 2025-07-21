@@ -1,6 +1,15 @@
 {
   "xdy-dragonbane-workbench": {
+    "EFFECTS": {
+      "StatusOverEncumbered": "Over-encumbered"
+    },
     "SETTINGS": {
+      "encumbranceAutomation": {
+        "name": "Enable automation of over-encumbered.",
+        "hint": "Enable automation of adding the new status Over-encumbered. (No game effect, just a reminder status.)",
+        "isEncumbered": "{name} is over-encumbered!",
+        "isNotEncumbered": "{name} is no longer over-encumbered!"
+      },
       "reminderTargeting": {
         "hint": "Check to show reminder for targeting in combat.",
         "name": "Targeting reminder",

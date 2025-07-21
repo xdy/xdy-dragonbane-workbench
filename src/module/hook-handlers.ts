@@ -1,9 +1,10 @@
 import {reminderTargeting} from "./targeting";
 import {MODULENAME} from "../xdy-dragonbane-workbench";
-import {extractChatMessageInfo, ExtractedChatInfo, shouldIHandleThisMessage} from "./utils";
+import {extractChatMessageInfo, ExtractedChatInfo, shouldIHandleThis, shouldIHandleThisMessage} from "./utils";
 import {renderNameHud, tokenCreateRenaming} from "./tokenNames";
+import {handleEncumbranceAutomation} from "./handle-encumbrance-automation";
 
-export const preCreateChatMessageHook = (message: ChatMessage, data: any, _options: any, _user: any) => {
+export const preCreateChatMessageHook = (message: ChatMessage, _data: any, _options: any, _user: any) => {
   let proceed = true;
 
   const reminderTargetingEnabled = String(game.settings?.get(MODULENAME, "reminderTargeting")) !== "no";
@@ -51,6 +52,17 @@ export function preUpdateTokenHook(_document: any, update: { x: null; y: null; }
 export function renderTokenHUDHook(_app: TokenDocument, html: HTMLElement, data: any) {
   if (html && game.user?.isGM && game.settings.get(MODULENAME, "npcRenamer")) {
     renderNameHud(data, html);
+  }
+}
+
+//Called from createItem, deleteItem, updateItem
+export async function encumbranceAutomationHook(item: Item, _options: any) {
+  if (
+    item.actor?.type === "character" &&
+    game.settings.get(MODULENAME, "encumbranceAutomation") &&
+    shouldIHandleThis(item.actor)
+  ) {
+    handleEncumbranceAutomation(item.actor);
   }
 }
 

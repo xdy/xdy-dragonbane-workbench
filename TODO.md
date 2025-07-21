@@ -1,6 +1,3 @@
-Features I'm considering adding:
-ÖVERBELASTAD, gives a condition if one is encumbered
-
 Houserules I'm considering adding support for:
 My brave/cautious houserule (add conditions), or, maybe through condition lab?
 
