@@ -3,7 +3,7 @@ import {MODULENAME} from "../xdy-dragonbane-workbench";
 export const overEncumbered = "overEncumbered";
 
 export function addOverEncumberedStatus() {
-  if (game.settings.get(MODULENAME, "encumbranceAutomation") && !CONFIG.statusEffects.find(e => e.id === "overEncumbered")) {
+  if (game.settings.get(MODULENAME, "encumbranceAutomation") && !CONFIG.statusEffects.find(e => e.id === overEncumbered)) {
     CONFIG.statusEffects.unshift({
       "id": overEncumbered,
       "name": game.i18n.localize(`${MODULENAME}.EFFECTS.StatusOverEncumbered`),

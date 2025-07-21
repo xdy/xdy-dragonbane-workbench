@@ -58,6 +58,7 @@ export function registerWorkbenchSettings() {
     default: false,
     type: Boolean,
     onChange: () => updateHooks(),
+    requiresReload: true,
   });
 
   game.settings.register(MODULENAME, "npcRenamer", {
