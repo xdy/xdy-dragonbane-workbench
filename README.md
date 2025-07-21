@@ -23,6 +23,7 @@ Various qol features for the Foundry VTT Drakar & Demoner / Dragonbane system.
   * Option to remind when an attack is made without targeting, or just cancel untargeted attacks.
   * Option to toggle temporary rename of tokens (by adding an adjective first or number last) from hud, when dragging to
     scene while holding control or by using keybind when one or more tokens are selected.
+  * Option to automatically send a notification and add a reminder effect when a character is over-encumbered. (No automation of the game effects.)
 
 * Experimental features:
   * If a feature name starts with mentioning that it's experimental, use with caution. It's probably barely tested and
