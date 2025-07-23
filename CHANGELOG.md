@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.4.1...v1.4.2) (2025-07-23)
+
+
+### Bug Fixes
+
+* Increase debounce of item hooks ([9b1ed79](https://github.com/xdy/xdy-dragonbane-workbench/commit/9b1ed79acd545d288385f9a65b41c1804a8090c4))
+
 ## [1.4.1](https://github.com/xdy/xdy-dragonbane-workbench/compare/v1.4.0...v1.4.1) (2025-07-21)
 
 
