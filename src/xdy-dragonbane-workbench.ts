@@ -69,19 +69,19 @@ export function updateHooks(cleanSlate = false) {
   handle(
     "createItem",
     Boolean(game.settings.get(MODULENAME, "encumbranceAutomation")),
-    foundry.utils.debounce(encumbranceAutomationHook, 10),
+    foundry.utils.debounce(encumbranceAutomationHook, 100),
   );
 
   handle(
     "updateItem",
     Boolean(game.settings.get(MODULENAME, "encumbranceAutomation")),
-    foundry.utils.debounce(encumbranceAutomationHook, 10),
+    foundry.utils.debounce(encumbranceAutomationHook, 100),
   );
 
   handle(
     "deleteItem",
     Boolean(gs.get(MODULENAME, "encumbranceAutomation")),
-    foundry.utils.debounce(encumbranceAutomationHook, 10)
+    foundry.utils.debounce(encumbranceAutomationHook, 100)
   );
 
   handle("preUpdateToken", Boolean(gs.get(MODULENAME, "tokenAnimationSpeed") !== DEFAULT_TOKEN_ANIMATION_SPEED), preUpdateTokenHook);
