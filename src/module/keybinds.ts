@@ -1,33 +1,32 @@
-import {MODULENAME} from "src/xdy-dragonbane-workbench";
 import {canRename, doRenaming, isTokenRenamed} from "./tokenNames";
+import {i18n, keybindings, MODULENAME, notifications, settings} from "../xdy-dragonbane-workbench.ts";
 
 export function registerWorkbenchKeybindings() {
   console.log(`${MODULENAME} | registerKeybindings`);
 
-  const keybindings = game.keybindings;
-
   // Renaming
   keybindings.register(MODULENAME, "npcRenamerRenameKey", {
-    name: game.i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerRenameKey.name`),
-    hint: game.i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerRenameKey.hint`),
+    name: i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerRenameKey.name`),
+    hint: i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerRenameKey.hint`),
     restricted: true,
-    editable: [{key: "KeyM", modifiers: ["Shift"]}],
+    editable: [{key: "KeyM", modifiers: ["SHIFT"]}],
     onDown: () => {
-      if (game.settings.get(MODULENAME, "npcRenamer")) {
+      if (settings.get(MODULENAME, "npcRenamer")) {
         if (canRename()) {
           for (const token of canvas?.tokens?.controlled ?? []) {
-            let active = isTokenRenamed(token);
-            doRenaming(token?.document, active).then();
+            doRenaming(token.document, isTokenRenamed(token))
+              .then(() => {
+              })
+              .catch(error => console.error(`${MODULENAME} | Error while renaming token:`, error));
           }
         } else {
-          ui.notifications?.warn(game.i18n.localize(`${MODULENAME}.SETTINGS.notifications.cantRename`));
+          notifications?.warn(i18n.localize(`${MODULENAME}.SETTINGS.notifications.cantRename`));
         }
         return true;
       }
       return false;
     },
     reservedModifiers: [],
-    // @ts-ignore
     precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
   });
 
@@ -39,8 +38,7 @@ export function registerWorkbenchKeybindings() {
         name: `Hotbar ${page} : ${column}`,
         hint: `${MODULENAME}.KEYBINDINGS.macroHotbar.hint`,
         onDown: () => {
-          // @ts-ignore
-          game.user?.getHotbarMacros(page)?.[column - 1]["macro"].execute();
+          void game.user?.getHotbarMacros(page)?.[column - 1]?.["macro"]?.execute();
           return true;
         },
       });

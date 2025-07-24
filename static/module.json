@@ -22,7 +22,7 @@
     ]
   },
   "esmodules": [
-    "xdy-dragonbane-workbench.js"
+    "./xdy-dragonbane-workbench.js"
   ],
   "scripts": [],
   "styles": [

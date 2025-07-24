@@ -1,6 +1,6 @@
 import {reminderTargeting} from "./targeting";
-import {MODULENAME} from "../xdy-dragonbane-workbench";
-import {extractChatMessageInfo, ExtractedChatInfo, shouldIHandleThis, shouldIHandleThisMessage} from "./utils";
+import {combats, i18n, MODULENAME, notifications, scenes, settings} from "../xdy-dragonbane-workbench";
+import {extractChatMessageInfo, type ExtractedChatInfo, shouldIHandleThis, shouldIHandleThisMessage} from "./utils";
 import {renderNameHud, tokenCreateRenaming} from "./tokenNames";
 import {handleEncumbranceAutomation} from "./handle-encumbrance-automation";
 
@@ -36,21 +36,22 @@ export function createChatMessageHook(_message: ChatMessage) {
 }
 
 export async function createTokenHook(token: TokenDocument, ..._args: any[]) {
-  if (game.user?.isGM && game.settings.get(MODULENAME, "npcRenamer")) {
-    tokenCreateRenaming(token).then();
+  if (game.user?.isGM && settings.get(MODULENAME, "npcRenamer")) {
+    await tokenCreateRenaming(token).then();
   }
 }
 
 export function preUpdateTokenHook(_document: any, update: { x: null; y: null; }, options: object, ..._args: any[]) {
   if (update.x !== null || update.y !== null) {
     foundry.utils.setProperty(options, "animation", {
-      movementSpeed: game.settings.get(MODULENAME, "tokenAnimationSpeed"),
+      movementSpeed: settings.get(MODULENAME, "tokenAnimationSpeed"),
     });
   }
 }
 
-export function renderTokenHUDHook(_app: TokenDocument, html: HTMLElement, data: any) {
-  if (html && game.user?.isGM && game.settings.get(MODULENAME, "npcRenamer")) {
+export function renderTokenHUDHook(_app: TokenDocument, html: HTMLElement, data: any
+) {
+  if (html && game.user?.isGM && settings.get(MODULENAME, "npcRenamer")) {
     renderNameHud(data, html);
   }
 }
@@ -58,26 +59,28 @@ export function renderTokenHUDHook(_app: TokenDocument, html: HTMLElement, data:
 //Called from createItem, deleteItem, updateItem
 export async function encumbranceAutomationHook(item: Item, _options: any) {
   if (
+    // @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
     item.actor?.type === "character" &&
-    game.settings.get(MODULENAME, "encumbranceAutomation") &&
+    settings.get(MODULENAME, "encumbranceAutomation") &&
     shouldIHandleThis(item.actor)
   ) {
-    handleEncumbranceAutomation(item.actor);
+    // @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
+    await handleEncumbranceAutomation(item.actor);
   }
 }
 
 
-function getAttackReasonCannotHappen(token: any): string {
+function getAttackReasonCannotHappen(token: TokenDocument | null | undefined): string {
   if (!token) return "";
   const conditionReasons = {
     dead: `${MODULENAME}.SETTINGS.reminderCannotAttack.dead`,
     defeated: `${MODULENAME}.SETTINGS.reminderCannotAttack.defeated`,
   };
 
-  // @ts-ignore
+  // @ts-ignore @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
   if (token.actor?.system["hitPoints"]["value"] <= 0) {
     return conditionReasons.dead;
-  } else if (game.combats.active?.combatant?.token === token && game.combats.active?.combatant?.defeated) {
+  } else if (combats.active?.combatant?.token === token && combats.active?.combatant?.defeated) {
     return conditionReasons.defeated;
   }
   return "";
@@ -96,7 +99,7 @@ function checkAttackValidity(message: ChatMessage, cancel: boolean) {
       return true;
     }
 
-    const token = game.scenes.current?.tokens.get(tokenId);
+    const token = scenes.current?.tokens.get(tokenId);
 
     if (!token || !token.actor) {
       return true;
@@ -111,13 +114,14 @@ function checkAttackValidity(message: ChatMessage, cancel: boolean) {
       const actorName = token.actor.name || "(unknown)";
 
       let weapon = fromUuidSync(info.itemUuid);
-      let msg = game.i18n.format(`${MODULENAME}.SETTINGS.${reasonKey}`, {
+      let msg = i18n.format(`${MODULENAME}.SETTINGS.${reasonKey}`, {
         title: info.actionType,
+        // @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
         weapon: weapon?.name || "(unknown)",
         actorName,
-        reason: game.i18n.localize(reason),
+        reason: i18n.localize(reason),
       });
-      ui.notifications[cancel ? "error" : "info"](msg);
+      notifications[cancel ? "error" : "info"](msg);
       return false;
     }
   }

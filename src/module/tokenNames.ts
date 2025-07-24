@@ -1,42 +1,42 @@
-import {MODULENAME} from "../xdy-dragonbane-workbench";
-import {ActorSystemData} from "foundry-pf2e";
+import {combat, MODULENAME, moduleId, settings} from "../xdy-dragonbane-workbench";
 import {renameModifierKey, renameRandomPropertyType} from "./register-settings";
-import {TranslationDictionaryValue} from "foundry-pf2e/foundry/client/helpers/localization.mjs";
+import type {DoDDNPC} from "./dragonbane";
 
-function shouldSkipRandomProperty(token: any) {
+function shouldSkipRandomProperty(actor: DoDDNPC) {
   return (
-    game.settings.get(MODULENAME, "npcRenamerRandomPropertySkipForUnique") &&
-    (<ActorSystemData>token?.actor?.system)?.traits?.rarity === "unique"
+    settings.get(MODULENAME, "npcRenamerRandomPropertySkipForUnique") &&
+    (actor?.system)?.traits?.rarity === "unique"
   );
 }
 
 async function fetchRandomWordPrefix(): Promise<string> {
-  let translations: string | { [p: string]: TranslationDictionaryValue } = game.i18n.translations ?? {};
+  let translations;
   translations = (<any>translations).TOKEN?.Adjectives;
   const translationKeys = Object.keys(translations);
   if (translationKeys.length > 0) {
     const randomKey = translationKeys[Math.floor(Math.random() * translationKeys.length)];
-    // @ts-ignore
+    // @ts-ignore @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
     return translations[randomKey];
   }
   return "";
 }
 
-export async function buildTokenName(token: any, isRenamed: boolean): Promise<string> {
+export async function buildTokenName(token: TokenDocument, isRenamed: boolean): Promise<string> {
   let tokenName = "";
 
   function getTokenName(): string {
-    const useOriginalTokenName = false; //game.settings.get(MODULENAME, "npcRenamerUnrenameToOriginalTokenName");
+    const useOriginalTokenName = false; //settings.get(MODULENAME, "npcRenamerUnrenameToOriginalTokenName");
     if (useOriginalTokenName) {
-      const originalTokenName = String(token.getFlag(MODULENAME, "originalTokenName"));
+      // @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
+      const originalTokenName = String(token.getFlag(moduleId, "originalTokenName"));
       if (originalTokenName) {
         return originalTokenName ?? "";
       }
     }
 
-    const prefix = ""; // game.settings.get(MODULENAME, "npcRenamerPrefix") !== "" ? game.settings.get(MODULENAME, "npcRenamerPrefix") + " " : "";
-    const postfix = ""; //game.settings.get(MODULENAME, "npcRenamerPostfix") !== "" ? game.settings.get(MODULENAME, "npcRenamerPostfix") + " " : "";
-    const replacement = ""; // game.settings.get(MODULENAME, "npcRenamerReplacement") !== "" ? game.settings.get(MODULENAME, "npcRenamerReplacement") + " " : "";
+    const prefix = ""; // settings.get(MODULENAME, "npcRenamerPrefix") !== "" ? settings.get(MODULENAME, "npcRenamerPrefix") + " " : "";
+    const postfix = ""; //settings.get(MODULENAME, "npcRenamerPostfix") !== "" ? settings.get(MODULENAME, "npcRenamerPostfix") + " " : "";
+    const replacement = ""; // settings.get(MODULENAME, "npcRenamerReplacement") !== "" ? settings.get(MODULENAME, "npcRenamerReplacement") + " " : "";
 
     return replacement !== "" ? replacement : prefix + (token.actor?.prototypeToken.name ?? "") + postfix;
   }
@@ -47,18 +47,21 @@ export async function buildTokenName(token: any, isRenamed: boolean): Promise<st
       tokenName = getTokenName();
     } else {
       // Store the original name before renaming
-      if (!token.getFlag(MODULENAME, "originalTokenName")) {
-        await token.setFlag(MODULENAME, "originalTokenName", token.name);
+      // @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
+      if (!token.getFlag(moduleId, "originalTokenName")) {
+        // @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
+        await token.setFlag(moduleId, "originalTokenName", token.name);
       }
 
-      if (!shouldSkipRandomProperty(token)) {
+      // @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
+      if (!shouldSkipRandomProperty(token.actor)) {
         let rolled = 0;
 
         switch (renameRandomPropertyType) {
           case "numberPostfix":
             rolled = Math.floor(Math.random() * 100) + 1;
             // Retry once if the number is already used, can't be bothered to roll until unique or keep track of used numbers
-            // @ts-ignore
+            // @ts-ignore Yes, it needs to be ignored.
             if (canvas?.scene?.tokens?.find((t) => t.name.endsWith(` ${rolled}`))) {
               rolled = Math.floor(Math.random() * 100) + 1;
             }
@@ -73,15 +76,15 @@ export async function buildTokenName(token: any, isRenamed: boolean): Promise<st
   }
 
   // Never return an empty string
-  return tokenName === "" ? String(game.settings.get(MODULENAME, "npcRenamerNoMatch")) : tokenName;
+  return tokenName === "" ? String(settings.get(MODULENAME, "npcRenamerNoMatch")) : tokenName;
 }
 
 function isRenameModifierKeyPressed() {
   switch (renameModifierKey) {
     case "ALT":
-      return game?.keyboard?.isModifierActive("Alt");
+      return game?.keyboard?.isModifierActive("ALT");
     case "CONTROL":
-      return game?.keyboard?.isModifierActive("Control");
+      return game?.keyboard?.isModifierActive("CONTROL");
     case "META":
       return game?.keyboard?.downKeys.has("MetaLeft") || game?.keyboard?.downKeys.has("MetaRight");
     default:
@@ -90,7 +93,7 @@ function isRenameModifierKeyPressed() {
 }
 
 export async function tokenCreateRenaming(token: any) {
-  const key = String(game.settings.get(MODULENAME, "npcRenamerModifierKey"));
+  const key = String(settings.get(MODULENAME, "npcRenamerModifierKey"));
   if (
     game.user?.isGM &&
     token &&
@@ -99,7 +102,8 @@ export async function tokenCreateRenaming(token: any) {
     (key === "ALWAYS" || isRenameModifierKeyPressed()) &&
     (!game.keyboard?.downKeys.has("V") || game.keyboard?.downKeys.has("Insert"))
   ) {
-    if (Hooks.call(`${MODULENAME}.tokenCreateRenaming`, token)) {
+    // Use type assertion to allow custom hook name
+    if (Hooks.call(`${MODULENAME}.tokenCreateRenaming` as any, token)) {
       await doRenaming(token, false);
     }
   }
@@ -139,15 +143,14 @@ export async function doRenaming(token: any | undefined, active: boolean) {
     },
   ];
 
-  const scene: Scene | null = canvas?.scene;
-  // @ts-ignore
+  const scene: Scene = <Scene>canvas?.scene;
   scene?.updateEmbeddedDocuments("Token", updates, {}).then(() => {
     if (game.combat) {
       new Promise((resolve) => setTimeout(resolve, 50)).then(() => {
-        ui.combat?.render(true);
-        ui.combat.combats
+        combat.render(true);
+        combat.combats
           .filter((x) => x.combatants.filter((c) => c.actor?.id === token.actor?.id).length > 0)
-          // @ts-ignore
+          // @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
           .forEach((c) => c.updateSource({}, {render: true}));
       });
     }
@@ -165,7 +168,7 @@ export function renderNameHud(data: any, html: HTMLElement) {
     toggle.setAttribute("data-action", "rename");
 
     const icon = document.createElement("i");
-    icon.className = String(game.settings.get(MODULENAME, "npcRenamerIcon"));
+    icon.className = String(settings.get(MODULENAME, "npcRenamerIcon"));
     icon.title = title;
 
     toggle.appendChild(icon);

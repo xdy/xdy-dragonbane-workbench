@@ -1,47 +1,47 @@
-import {MODULENAME, updateHooks} from "../xdy-dragonbane-workbench";
+import {MODULENAME, updateHooks, settings, i18n} from "../xdy-dragonbane-workbench";
 
 export let renameRandomPropertyType: string;
 export let renameModifierKey: string;
 
 export function registerWorkbenchSettings() {
-  game.settings.register(MODULENAME, "reminderCannotAttack", {
+  settings.register(MODULENAME, "reminderCannotAttack", {
     name: `${MODULENAME}.SETTINGS.reminderCannotAttack.name`,
     hint: `${MODULENAME}.SETTINGS.reminderCannotAttack.hint`,
-    scope: "user",
+    scope: "world",
     config: true,
     default: "no",
     type: String,
     choices: {
-      no: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderCannotAttack.no`),
-      reminder: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderCannotAttack.reminder`),
-      cancelAttack: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderCannotAttack.cancelAttack`),
+      no: i18n.localize(`${MODULENAME}.SETTINGS.reminderCannotAttack.no`),
+      reminder: i18n.localize(`${MODULENAME}.SETTINGS.reminderCannotAttack.reminder`),
+      cancelAttack: i18n.localize(`${MODULENAME}.SETTINGS.reminderCannotAttack.cancelAttack`),
     },
     onChange: () => {
       updateHooks();
     },
   });
 
-  game.settings.register(MODULENAME, "reminderTargeting", {
+  settings.register(MODULENAME, "reminderTargeting", {
     name: `${MODULENAME}.SETTINGS.reminderTargeting.name`,
     hint: `${MODULENAME}.SETTINGS.reminderTargeting.hint`,
-    scope: "user",
+    scope: "world",
     config: true,
     default: "no",
     type: String,
     choices: {
-      no: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderTargeting.no`),
-      reminder: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderTargeting.reminder`),
-      mustTarget: game.i18n.localize(`${MODULENAME}.SETTINGS.reminderTargeting.mustTarget`),
+      no: i18n.localize(`${MODULENAME}.SETTINGS.reminderTargeting.no`),
+      reminder: i18n.localize(`${MODULENAME}.SETTINGS.reminderTargeting.reminder`),
+      mustTarget: i18n.localize(`${MODULENAME}.SETTINGS.reminderTargeting.mustTarget`),
     },
     onChange: () => {
       updateHooks();
     },
   });
 
-  game.settings.register(MODULENAME, "tokenAnimationSpeed", {
+  settings.register(MODULENAME, "tokenAnimationSpeed", {
     name: `${MODULENAME}.SETTINGS.tokenAnimationSpeed.name`,
     hint: `${MODULENAME}.SETTINGS.tokenAnimationSpeed.hint`,
-    scope: "user",
+    scope: "world",
     config: true,
     default: 6,
     type: Number,
@@ -50,7 +50,7 @@ export function registerWorkbenchSettings() {
     },
   });
 
-  game.settings.register(MODULENAME, "encumbranceAutomation", {
+  settings.register(MODULENAME, "encumbranceAutomation", {
     name: `${MODULENAME}.SETTINGS.encumbranceAutomation.name`,
     hint: `${MODULENAME}.SETTINGS.encumbranceAutomation.hint`,
     scope: "world",
@@ -61,7 +61,7 @@ export function registerWorkbenchSettings() {
     requiresReload: true,
   });
 
-  game.settings.register(MODULENAME, "npcRenamer", {
+  settings.register(MODULENAME, "npcRenamer", {
     name: `${MODULENAME}.SETTINGS.npcRenamer.name`,
     hint: `${MODULENAME}.SETTINGS.npcRenamer.hint`,
     scope: "world",
@@ -71,18 +71,18 @@ export function registerWorkbenchSettings() {
     onChange: () => updateHooks(),
   });
 
-  game.settings.register(MODULENAME, "npcRenamerAddRandomProperty", {
+  settings.register(MODULENAME, "npcRenamerAddRandomProperty", {
     name: `${MODULENAME}.SETTINGS.npcRenamerAddRandomProperty.name`,
     hint: `${MODULENAME}.SETTINGS.npcRenamerAddRandomProperty.hint`,
     scope: "world",
     config: true,
     type: String,
     choices: {
-      none: game.i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerAddRandomProperty.none`),
-      numberPostfix: game.i18n.localize(
+      none: i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerAddRandomProperty.none`),
+      numberPostfix: i18n.localize(
         `${MODULENAME}.SETTINGS.npcRenamerAddRandomProperty.numberPostfix`,
       ),
-      wordPrefix: game.i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerAddRandomProperty.wordPrefix`),
+      wordPrefix: i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerAddRandomProperty.wordPrefix`),
     },
     default: "none",
     onChange: (key) => {
@@ -90,7 +90,7 @@ export function registerWorkbenchSettings() {
     },
   });
 
-  game.settings.register(MODULENAME, "npcRenamerRandomPropertySkipForUnique", {
+  settings.register(MODULENAME, "npcRenamerRandomPropertySkipForUnique", {
     name: `${MODULENAME}.SETTINGS.npcRenamerRandomPropertySkipForUnique.name`,
     hint: `${MODULENAME}.SETTINGS.npcRenamerRandomPropertySkipForUnique.hint`,
     scope: "world",
@@ -100,7 +100,7 @@ export function registerWorkbenchSettings() {
   });
 
   //TODO Fix and add prefix/postfix word
-  // game.settings.register(MODULENAME, "npcRenamerPrefix", {
+  // gs.register(MODULENAME, "npcRenamerPrefix", {
   //   name: `${MODULENAME}.SETTINGS.npcRenamerPrefix.name`,
   //   hint: `${MODULENAME}.SETTINGS.npcRenamerPrefix.hint`,
   //   scope: "world",
@@ -109,7 +109,7 @@ export function registerWorkbenchSettings() {
   //   default: "",
   // });
   //
-  // game.settings.register(MODULENAME, "npcRenamerPostfix", {
+  // gs.register(MODULENAME, "npcRenamerPostfix", {
   //   name: `${MODULENAME}.SETTINGS.npcRenamerPostfix.name`,
   //   hint: `${MODULENAME}.SETTINGS.npcRenamerPostfix.hint`,
   //   scope: "world",
@@ -118,7 +118,7 @@ export function registerWorkbenchSettings() {
   //   default: "",
   // });
 
-  game.settings.register(MODULENAME, "npcRenamerNoMatch", {
+  settings.register(MODULENAME, "npcRenamerNoMatch", {
     name: `${MODULENAME}.SETTINGS.npcRenamerNoMatch.name`,
     hint: `${MODULENAME}.SETTINGS.npcRenamerNoMatch.hint`,
     scope: "world",
@@ -129,23 +129,23 @@ export function registerWorkbenchSettings() {
       if (!choice) {
         // Sleep a bit, then set to a sane value...
         await new Promise((resolve) => setTimeout(resolve, 250));
-        game.settings.set(MODULENAME, "npcRenamerNoMatch", "...");
+        settings.set(MODULENAME, "npcRenamerNoMatch", "...");
       }
     },
   });
 
-  game.settings.register(MODULENAME, "npcRenamerModifierKey", {
+  settings.register(MODULENAME, "npcRenamerModifierKey", {
     name: `${MODULENAME}.SETTINGS.npcRenamerModifierKey.name`,
     hint: `${MODULENAME}.SETTINGS.npcRenamerModifierKey.hint`,
     scope: "world",
     type: String,
     config: true,
     choices: {
-      ALWAYS: game.i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerModifierKey.always`),
-      DISABLED: game.i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerModifierKey.disabled`),
-      ALT: game.i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerModifierKey.alt`),
-      CONTROL: game.i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerModifierKey.control`),
-      META: game.i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerModifierKey.meta`),
+      ALWAYS: i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerModifierKey.always`),
+      DISABLED: i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerModifierKey.disabled`),
+      ALT: i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerModifierKey.alt`),
+      CONTROL: i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerModifierKey.control`),
+      META: i18n.localize(`${MODULENAME}.SETTINGS.npcRenamerModifierKey.meta`),
     },
     default: "CONTROL",
     onChange: (key) => {
@@ -154,7 +154,7 @@ export function registerWorkbenchSettings() {
   });
 
   //TODO Fix and add
-  // game.settings.register(MODULENAME, "npcRenamerUnrenameToOriginalTokenName", {
+  // gs.register(MODULENAME, "npcRenamerUnrenameToOriginalTokenName", {
   //   name: `${MODULENAME}.SETTINGS.npcRenamerUnrenameToOriginalTokenName.name`,
   //   hint: `${MODULENAME}.SETTINGS.npcRenamerUnrenameToOriginalTokenName.hint`,
   //   scope: "world",
@@ -163,7 +163,7 @@ export function registerWorkbenchSettings() {
   //   default: false,
   // });
   //
-  game.settings.register(MODULENAME, "npcRenamerExcludeActorTypes", {
+  settings.register(MODULENAME, "npcRenamerExcludeActorTypes", {
     name: `${MODULENAME}.SETTINGS.npcRenamerExcludeActorTypes.name`,
     hint: `${MODULENAME}.SETTINGS.npcRenamerExcludeActorTypes.hint`,
     scope: "world",
@@ -172,7 +172,7 @@ export function registerWorkbenchSettings() {
     default: "",
   });
 
-  game.settings.register(MODULENAME, "npcRenamerIcon", {
+  settings.register(MODULENAME, "npcRenamerIcon", {
     name: `${MODULENAME}.SETTINGS.npcRenamerIcon.name`,
     hint: `${MODULENAME}.SETTINGS.npcRenamerIcon.hint`,
     scope: "world",
@@ -181,8 +181,8 @@ export function registerWorkbenchSettings() {
     default: "fa-solid fa-eye-slash",
   });
 
-  renameModifierKey = String(game.settings.get(MODULENAME, "npcRenamerModifierKey"));
-  renameRandomPropertyType = String(game.settings.get(MODULENAME, "npcRenamerAddRandomProperty"));
+  renameModifierKey = String(settings.get(MODULENAME, "npcRenamerModifierKey"));
+  renameRandomPropertyType = String(settings.get(MODULENAME, "npcRenamerAddRandomProperty"));
 
 }
 

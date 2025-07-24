@@ -1,123 +1,201 @@
+import * as fs from "fs/promises";
+import * as Vite from "vite";
 import {viteStaticCopy} from "vite-plugin-static-copy";
-import {defineConfig} from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import checker from "vite-plugin-checker";
-import moduleJSON from './static/module.json' with {type: 'json'};
+import {checker} from "vite-plugin-checker";
+import esbuild from "esbuild";
+import * as path from "path";
+import {findManifestJSON} from "./utils.ts";
 
-const s_XDY_DB_WB_ID = `modules/${moduleJSON.id}`;
+export type PackageType = "module" | "system" | "world";
 
-// const s_SVELTE_HASH_ID = 'xdbwb';
+const packageType: PackageType = "module";
 
-const s_COMPRESS = false;  // Set to true to compress the module bundle.
-const s_SOURCEMAPS = true; // Generate sourcemaps for the bundle (recommended).
+// The package name should be the same as the name in the `module.json`/`system.json` file.
+const packageID: string = "xdy-dragonbane-workbench";
 
-export default defineConfig(({mode}) => {
-    // Provides a custom hash adding the string defined in `s_SVELTE_HASH_ID` to scoped Svelte styles;
-    // This is reasonable to do as the framework styles in TRL compiled across `n` different packages will
-    // be the same. Slightly modifying the hash ensures that your package has uniquely scoped styles for all
-    // TRL components and makes it easier to review styles in the browser debugger.
-    // const compilerOptions = mode === 'production' ? {
-    //   cssHash: ({hash, css}: { hash: Function, css: string }) => `svelte-${s_SVELTE_HASH_ID}-${hash(css)}`
-    // } : {};
+const manifestJSONPath = await findManifestJSON(packageType);
 
-    return {
-        root: 'src/',                  // Source location / esbuild root.
-        base: `/${s_XDY_DB_WB_ID}/dist`, // Base module path that 30001 / served dev directory.
-        publicDir: "static",              // No public resources to copy.
-        cacheDir: '../.vite-cache',    // Relative from root directory.
+const filesToCopy = ["CHANGELOG.md", "README.md", "CONTRIBUTING.md", "../static/*"];
 
-        resolve: {
-            conditions: ['browser', 'import']
+const devServerPort = 30001;
+const scriptsEntrypoint = './src/xdy-dragonbane-workbench.ts';
+// const stylesEntrypoint = "./src/styles/styles.scss";
+
+// const foundryHostData = await findFoundryHost();
+const foundryHost = "localhost:30000";
+
+const foundryPackagePath = getFoundryPackagePath(packageType, packageID);
+
+// await symlinkFoundryPackage(packageType, packageID, foundryHostData);
+
+const config = Vite.defineConfig(({command, mode}): Vite.UserConfig => {
+  const buildMode = mode === "production" ? "production" : "development";
+  const outDir = "dist";
+
+  const plugins: Vite.PluginOption[] = [
+    checker({
+      typescript: {buildMode: true},
+      eslint: {
+        lintCommand: "eslint .",
+        useFlatConfig: true,
+      },
+      stylelint: {
+        lintCommand: "stylelint **/*.{scss,css}",
+      },
+    }),
+    tsconfigPaths(),
+  ];
+
+  // Handle minification after build to allow for tree-shaking and whitespace minification
+  // "Note the build.minify option does not minify whitespaces when using the 'es' format in lib mode, as it removes
+  // pure annotations and breaks tree-shaking."
+  if (buildMode === "production") {
+    plugins.push(
+      minifyPlugin(),
+      viteStaticCopy({
+          targets: filesToCopy.map((file) => ({
+            src: file,
+            dest: path.dirname(file), //Or just "."?
+          })),
+          silent: true,
         },
+      ),
+      // The manifest must be copied to the top level of the `dist` folder.
+      viteStaticCopy({
+        targets: [
+          {
+            src: manifestJSONPath,
+            dest: ".",
+          },
+        ],
+      }),
+    );
+  } else {
+    plugins.push(foundryHMRPlugin());
+  }
 
-        esbuild: {
-            target: ['es2022']
+  return {
+    base: command === "build" ? "./" : `/${foundryPackagePath}`,
+    publicDir: "static",
+    build: {
+      outDir,
+      sourcemap: buildMode === "development",
+      lib: {
+        name: packageID,
+        entry: scriptsEntrypoint,
+        formats: ["es"],
+        fileName: "xdy-dragonbane-workbench",
+      },
+      rollupOptions: {
+        output: {
+          entryFileNames: "xdy-dragonbane-workbench.js"
         },
-
-        css: {
-            // // Creates a standard configuration for PostCSS with autoprefixer & postcss-preset-env.
-            // postcss: postcssConfig({compress: s_COMPRESS, sourceMap: s_SOURCEMAPS})
+        watch: {
+          exclude: 'node_modules/**'
+        }
+      },
+      target: "es2023",
+    },
+    optimizeDeps: {
+      entries: [],
+    },
+    server: {
+      port: devServerPort,
+      open: "/game",
+      proxy: {
+        [`^(?!/${escapeRegExp(foundryPackagePath)})`]: `http://${foundryHost}`,
+        "/socket.io": {
+          target: `ws://${foundryHost}`,
+          ws: true,
         },
-
-        // About server options:
-        // - Set to `open` to boolean `false` to not open a browser window automatically. This is useful if you set up a
-        // debugger instance in your IDE and launch it with the URL: 'http://localhost:30001/game'.
-        //
-        // - The top proxy entry redirects requests under the module path for `style.css` and following standard static
-        // directories: `assets`, `lang`, and `packs` and will pull those resources from the main Foundry / 30000 server.
-        // This is necessary to reference the dev resources as the root is `/src` and there is no public / static
-        // resources served with this particular Vite configuration. Modify the proxy rule as necessary for your
-        // static resources / project.
-        server: {
-            port: 30001,
-            open: '/game',
-            proxy: {
-                // Serves static files from main Foundry server.
-                [`^(/${s_XDY_DB_WB_ID}/(assets|lang|packs|dist/${moduleJSON.id}.css))`]: 'http://localhost:30000',
-
-                // All other paths besides package ID path are served from main Foundry server.
-                [`^(?!/${s_XDY_DB_WB_ID}/)`]: 'http://localhost:30000',
-
-                // Rewrite incoming `module-id.js` request from Foundry to the dev server `index.ts`.
-                [`/${s_XDY_DB_WB_ID}/dist/${moduleJSON.id}.js`]: {
-                    target: `http://localhost:30001/${s_XDY_DB_WB_ID}/dist`,
-                    rewrite: () => '/xdy-dragonbane-workbench.ts',
-                },
-
-                // Enable socket.io from main Foundry server.
-                '/socket.io': {target: 'ws://localhost:30000', ws: true}
-            }
-        },
-        build: {
-            outDir: '../dist',
-            emptyOutDir: true,
-            sourcemap: s_SOURCEMAPS,
-            brotliSize: true,
-            minify: s_COMPRESS ? 'terser' : false,
-            target: ['es2022'],
-            // terserOptions: s_COMPRESS ? {...terserConfig(), ecma: 2022} : void 0,
-            lib: {
-                entry: './xdy-dragonbane-workbench.ts',
-                formats: ['es'],
-                fileName: moduleJSON.id
-            },
-            rollupOptions: {
-                output: {
-                    // Rewrite the default style.css to a more recognizable file name.
-                    assetFileNames: (assetInfo) =>
-                        assetInfo.name === 'style.css' ? `${moduleJSON.id}.css` : assetInfo.name as string,
-                },
-                watch: {
-                    exclude: 'node_modules/**'
-                }
-            },
-        },
-
-        // Necessary when using the dev server for top-level await usage inside TRL.
-        optimizeDeps: {
-            esbuildOptions: {
-                target: 'es2022'
-            }
-        },
-
-        plugins: [
-            // svelte({
-            //   compilerOptions,
-            //   preprocess: sveltePreprocess()
-            // }),
-            checker({typescript: true}),
-            tsconfigPaths(),
-            ...viteStaticCopy({
-                targets: [
-                    {src: "../CHANGELOG.md", dest: "."},
-                    {src: "../README.md", dest: "."},
-                    {src: "../CONTRIBUTING.md", dest: "."},
-                    {src: "../static/*", dest: "."},
-                ],
-                watch: {
-                    reloadPageOnChange: true
-                }
-            }),
-        ]
-    };
+      },
+    },
+    plugins,
+  };
 });
+
+// Credit to PF2e's vite.config.ts for this https://github.com/foundryvtt/pf2e/blob/master/vite.config.ts
+function minifyPlugin(): Vite.Plugin {
+  return {
+    name: "minify",
+    config() {
+      // If https://github.com/vitejs/vite/issues/2830 is addressed then CSS minification can be enabled.
+      return {
+        build: {
+          minify: false,
+        },
+      };
+    },
+    renderChunk: {
+      order: "post",
+      async handler(code) {
+        return esbuild.transform(code, {
+          keepNames: true,
+          minifyIdentifiers: false,
+          minifySyntax: true,
+          minifyWhitespace: true,
+        });
+      },
+    },
+  };
+}
+
+function getFoundryPackagePath(packageType: PackageType, packageID: string) {
+  // Foundry puts a package at the path `/modules/module-name`, `/systems/system-name`, or `/worlds/world-name`.
+  return `${packageType}s/${packageID}/`;
+}
+
+// Escapes all RegExp meta-characters like .
+function escapeRegExp(unescaped: string): string {
+  return unescaped.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// TODO: Make this more agnostic to the organizational folders.
+function foundryHMRPlugin(): Vite.Plugin {
+  // Vite HMR is only preconfigured for css files: add handler for HBS and lang files
+  return {
+    name: "hmr-handler",
+    apply: "serve",
+    async handleHotUpdate(context) {
+      const {outDir} = context.server.config.build;
+
+      if (context.file.startsWith(outDir)) return;
+
+      const baseName = path.basename(context.file);
+      const extension = path.extname(context.file);
+
+      if (baseName === "en.json") {
+        const basePath = context.file.slice(context.file.indexOf("lang/"));
+        console.log(`Updating lang file at ${basePath}`);
+
+        await fs.copyFile(context.file, `${outDir}/${basePath}`);
+
+        context.server.ws.send({
+          type: "custom",
+          event: "lang-update",
+          data: {path: `${foundryPackagePath}/${basePath}`},
+        });
+
+        return;
+      }
+
+      if (extension === ".hbs") {
+        const basePath = context.file.slice(context.file.indexOf("templates/"));
+        console.log(`Updating template file at ${basePath}`);
+
+        await fs.copyFile(context.file, `${outDir}/${basePath}`);
+
+        context.server.ws.send({
+          type: "custom",
+          event: "template-update",
+          data: {path: `${foundryPackagePath}/${basePath}`},
+        });
+
+        return;
+      }
+    },
+  };
+}
+
+export default config;

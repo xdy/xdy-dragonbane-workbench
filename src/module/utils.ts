@@ -1,4 +1,4 @@
-import {MODULENAME} from "../xdy-dragonbane-workbench";
+import {i18n, MODULENAME, socket, user, users} from "../xdy-dragonbane-workbench";
 
 function shouldIHandleThisMessage(message: ChatMessage, playerCondition = true, gmCondition = true) {
   const amIMessageSender = message.author?.id === game.user?.id;
@@ -14,15 +14,15 @@ export {shouldIHandleThisMessage};
 
 export function shouldIHandleThis(actor: Actor) {
   if (!actor) return null;
-  const currentUser = game.users.current;
-  const activePlayers = game.users.players.filter((u) => u.active);
+  const currentUser = users.current;
+  const activePlayers = users.players.filter((u) => u.active);
   const assignedUser = activePlayers.find((u) => u.character === actor);
   const anyoneWithPermission = activePlayers.find((u) => actor.canUserModify(u, "update"));
   const updater =
     currentUser?.active && actor.canUserModify(currentUser, "update")
       ? currentUser
-      : (assignedUser ?? game.users.activeGM ?? anyoneWithPermission ?? null);
-  return game.user.id === updater?.id;
+      : (assignedUser ?? users.activeGM ?? anyoneWithPermission ?? null);
+  return user.id === updater?.id;
 }
 
 export interface ExtractedChatInfo {
@@ -36,8 +36,8 @@ export interface ExtractedChatInfo {
 export function extractChatMessageInfo(message: string): ExtractedChatInfo | null {
   if (!message) return null;
 
-  const translations: any = game.i18n.translations['DoD'] ?? {};
-  const moduleTranslations: any = game.i18n.translations[`${MODULENAME}`] ?? {};
+  const translations: any = i18n.translations['DoD'] ?? {};
+  const moduleTranslations: any = i18n.translations[`${MODULENAME}`] ?? {};
 
   const itemUuidMatch = message.match(/@UUID\[([^\]]+)\]/);
   const itemUuid = itemUuidMatch ? itemUuidMatch[1] : '';
@@ -51,14 +51,14 @@ export function extractChatMessageInfo(message: string): ExtractedChatInfo | nul
   let resultText = '';
 
   let match = message.match(withTargetPattern);
-  if (match) {
+  if (match && match[1] && match[2] && match[3]) {
     text = match[0].trim();
     actionType = match[1].trim();
     target = match[2].trim();
     resultText = match[3].trim();
   } else {
     match = message.match(withoutTargetPattern);
-    if (match) {
+    if (match && match[1] && match[2]) {
       text = match[0].trim();
       actionType = match[1].trim();
       resultText = match[2].trim();
@@ -96,5 +96,5 @@ export function extractChatMessageInfo(message: string): ExtractedChatInfo | nul
 }
 
 export function pushNotification(message: any, type: string = "info") {
-  game.socket.emit("module." + MODULENAME, {operation: "notification", args: [type, message]});
+  socket.emit("module." + MODULENAME, {operation: "notification", args: [type, message]});
 }

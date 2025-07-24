@@ -1,5 +1,5 @@
-import {MODULENAME} from "../xdy-dragonbane-workbench";
-import {extractChatMessageInfo, ExtractedChatInfo, shouldIHandleThisMessage} from "./utils";
+import {i18n, MODULENAME, notifications} from "../xdy-dragonbane-workbench";
+import {extractChatMessageInfo, type ExtractedChatInfo, shouldIHandleThisMessage} from "./utils";
 
 export function reminderTargeting(message: ChatMessage, setting: any) {
 
@@ -16,16 +16,19 @@ export function reminderTargeting(message: ChatMessage, setting: any) {
       let weapon = fromUuidSync(info.itemUuid);
 
       if (setting === "reminder") {
-        const info = game.i18n.format(`${MODULENAME}.SETTINGS.reminderTargeting.info`, {
+        const info = i18n.format(`${MODULENAME}.SETTINGS.reminderTargeting.info`, {
           title,
+          // @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
           weapon: weapon?.name || "(unknown)",
         });
-        ui.notifications.info(info);
+        notifications.info(info);
       } else if (setting === "mustTarget") {
-        const error = game.i18n.format(`${MODULENAME}.SETTINGS.reminderTargeting.error`, {
-          title, weapon: weapon?.name || "(unknown)",
+        const error = i18n.format(`${MODULENAME}.SETTINGS.reminderTargeting.error`, {
+          title,
+          // @ts-expect-error Meh. Meh is not long enough. But. Still. Meh.
+          weapon: weapon?.name || "(unknown)",
         });
-        ui.notifications.error(error);
+        notifications.error(error);
         return false;
       }
     }

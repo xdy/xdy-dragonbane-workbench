@@ -1,31 +1,33 @@
-import {MODULENAME} from "../xdy-dragonbane-workbench";
+import {i18n, MODULENAME, notifications, settings} from "../xdy-dragonbane-workbench";
+import type {DoDCharacter} from "./dragonbane";
 
 export const overEncumbered = "overEncumbered";
 
 export function addOverEncumberedStatus() {
-  if (game.settings.get(MODULENAME, "encumbranceAutomation") && !CONFIG.statusEffects.find(e => e.id === overEncumbered)) {
+  if (settings.get(MODULENAME, "encumbranceAutomation") && !CONFIG.statusEffects.find(e => e.id === overEncumbered)) {
     CONFIG.statusEffects.unshift({
       "id": overEncumbered,
-      "name": game.i18n.localize(`${MODULENAME}.EFFECTS.StatusOverEncumbered`),
+      "name": i18n.localize(`${MODULENAME}.EFFECTS.StatusOverEncumbered`),
       "img": "icons/svg/wall-direction.svg"
     });
   }
 }
 
-export function handleEncumbranceAutomation(actor) {
-  const enc = actor.system?.encumbrance?.value || 0;
-  const max = actor.system?.maxEncumbrance?.value || 0;
-  const isEncumbered = actor.effects.some(e => e.statuses?.has(overEncumbered));
+
+export async function handleEncumbranceAutomation(actor: DoDCharacter) {
+  const enc = actor.system.encumbrance.value || 0;
+  const max = actor.system.maxEncumbrance.value || 0;
+  const isEncumbered = actor.effects.some(e => e.statuses.has(overEncumbered));
 
   const shouldBeEncumbered = enc > max;
   if (shouldBeEncumbered !== isEncumbered) {
-    actor.toggleStatusEffect(overEncumbered, {active: shouldBeEncumbered});
+    await actor.toggleStatusEffect(overEncumbered, {active: shouldBeEncumbered})
     if (shouldBeEncumbered) {
-      ui.notifications.info(game.i18n.format(`${MODULENAME}.SETTINGS.encumbranceAutomation.isEncumbered`, {
+      notifications.info(i18n.format(`${MODULENAME}.SETTINGS.encumbranceAutomation.isEncumbered`, {
         name: actor.name
       }));
     } else {
-      ui.notifications.info(game.i18n.format(`${MODULENAME}.SETTINGS.encumbranceAutomation.isNotEncumbered`, {
+      notifications.info(i18n.format(`${MODULENAME}.SETTINGS.encumbranceAutomation.isNotEncumbered`, {
         name: actor.name
       }));
     }
