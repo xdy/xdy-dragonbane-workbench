@@ -4998,7 +4998,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fvtt-types@https://github.com/League-of-Foundry-Developers/foundry-vtt-types.git#commit=f00256cf13f4632149f0a4dfbb73fa4895d14bcb":
+"fvtt-types@github:League-of-Foundry-Developers/foundry-vtt-types#main":
   version: 13.346.0
   resolution: "fvtt-types@https://github.com/League-of-Foundry-Developers/foundry-vtt-types.git#commit=f00256cf13f4632149f0a4dfbb73fa4895d14bcb"
   dependencies:
@@ -10694,7 +10694,7 @@ __metadata:
     eslint-import-resolver-typescript: "npm:^4.4.4"
     eslint-plugin-import-x: "npm:^4.16.1"
     eslint-plugin-tsdoc: "npm:^0.4.0"
-    fvtt-types: "https://github.com/League-of-Foundry-Developers/foundry-vtt-types.git#commit=f00256cf13f4632149f0a4dfbb73fa4895d14bcb"
+    fvtt-types: "github:League-of-Foundry-Developers/foundry-vtt-types#main"
     picomatch: "npm:^4.0.3"
     pixi: "npm:^0.3.1"
     postcss: "npm:^8.5.6"
