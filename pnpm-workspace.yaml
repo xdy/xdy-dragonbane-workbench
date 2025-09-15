@@ -1,0 +1,18 @@
+ignoredBuiltDependencies:
+  - unrs-resolver
+  - "@parcel/watcher"
+  - classic-level
+  - league-of-foundry-developers/foundry-vtt-types
+blockExoticSubdeps: true
+minimumReleaseAge: 4320
+onlyBuiltDependencies:
+  - esbuild
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 10080
+peerDependencyRules:
+  ignoreMissing:
+    - "@pixi/compressed-textures"
+  allowedVersions:
+    "@pixi/basis>@pixi/core": "*"
+    "@pixi/basis>@pixi/assets": "*"
+    "@pixi/particle-emitter>@pixi/core": "*"

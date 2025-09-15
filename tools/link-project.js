@@ -2,7 +2,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { rmdir, symlink } from 'node:fs/promises';
 import * as path from 'path';
-import chalk from 'chalk';
+import colors from 'yoctocolors';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
@@ -32,12 +32,12 @@ if (config.dataPath) {
 const linkDirExists = existsSync(linkDir);
 if (argv.clean || argv.c) {
   if (linkDirExists) {
-    console.log(chalk.green(`Removing link to ${chalk.blueBright(linkDir)}`));
+    console.log(colors.green(`Removing link to ${colors.blueBright(linkDir)}`));
     await rmdir(linkDir);
   } else {
-    console.log(chalk.yellow('No directory to remove'));
+    console.log(colors.yellow('No directory to remove'));
   }
 } else if (!linkDirExists) {
-  console.log(chalk.green(`Creating link to ${chalk.blueBright(linkDir)}`));
+  console.log(colors.green(`Creating link to ${colors.blueBright(linkDir)}`));
   await symlink(path.resolve('./dist'), linkDir, 'dir');
 }
