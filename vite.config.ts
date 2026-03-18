@@ -1,7 +1,6 @@
 import * as fs from "fs/promises";
 import * as Vite from "vite";
 import {viteStaticCopy} from "vite-plugin-static-copy";
-import tsconfigPaths from "vite-tsconfig-paths";
 import {checker} from "vite-plugin-checker";
 import esbuild from "esbuild";
 import * as path from "path";
@@ -44,7 +43,6 @@ const config = Vite.defineConfig(({command, mode}): Vite.UserConfig => {
         lintCommand: "stylelint **/*.{scss,css}",
       },
     }),
-    tsconfigPaths(),
   ];
 
   // Handle minification after build to allow for tree-shaking and whitespace minification
@@ -77,6 +75,9 @@ const config = Vite.defineConfig(({command, mode}): Vite.UserConfig => {
 
   return {
     base: command === "build" ? "./" : `/${foundryPackagePath}`,
+    resolve: {
+      tsconfigPaths: true,
+    },
     publicDir: "static",
     build: {
       outDir,
